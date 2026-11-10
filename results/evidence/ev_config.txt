@@ -1,0 +1,19 @@
+# SLURM configuration relevant to the inventory
+# read on 2026-09-29T13:34:45+02:00 from access1 by: scontrol show config | grep ...
+
+AccountingStorageTRES   = cpu,mem,energy,node,billing,fs/disk,vmem,pages,gres/gpu,gres/gpu:hopper,gres/gpu:l40s,gres/gpu:volta,gres/gpumem,gres/gpuutil
+AcctGatherEnergyType    = acct_gather_energy/rapl
+AcctGatherFilesystemType = (null)
+AcctGatherInterconnectType = (null)
+AcctGatherNodeFreq      = 0 sec
+AcctGatherProfileType   = (null)
+JobAcctGatherFrequency  = task=30,energy=30
+JobAcctGatherType       = jobacct_gather/cgroup
+JobAcctGatherParams     = (null)
+PrivateData             = none
+ProctrackType           = proctrack/cgroup
+SelectType              = select/cons_tres
+SelectTypeParameters    = CR_CORE_MEMORY,CR_CORE_DEFAULT_DIST_BLOCK
+SLURM_VERSION           = 25.11.8
+TaskPlugin              = task/cgroup,task/affinity
+TaskPluginParam         = autobind=cores

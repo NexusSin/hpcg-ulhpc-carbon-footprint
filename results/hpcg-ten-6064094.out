@@ -1,0 +1,71 @@
+=== provenance ===
+job         : 6064094
+node        : iris-130   nodeclass=regular-skylake
+cpu         : Intel(R) Xeon(R) Gold 6132 CPU @ 2.60GHz
+os          : Rocky Linux 8.10 (Green Obsidian)
+kernel      : 4.18.0-553.146.1.el8_10.x86_64
+slurm       : slurm 25.11.8
+started     : 2026-09-29T19:22:37+02:00
+rapl range  : 262143328850 262143328850 65712999613 65712999613 
+=== modules ===
+
+Currently Loaded Modules:
+  1) env/release/2023b                       (S)
+  2) compiler/GCCcore/13.2.0
+  3) lib/zlib/1.2.13-GCCcore-13.2.0
+  4) tools/binutils/2.40-GCCcore-13.2.0
+  5) compiler/GCC/13.2.0
+  6) tools/numactl/2.0.16-GCCcore-13.2.0
+  7) tools/XZ/5.4.4-GCCcore-13.2.0
+  8) lib/libxml2/2.11.5-GCCcore-13.2.0
+  9) system/libpciaccess/0.17-GCCcore-13.2.0
+ 10) system/hwloc/2.9.2-GCCcore-13.2.0
+ 11) system/OpenSSL/1.1
+ 12) lib/libevent/2.1.12-GCCcore-13.2.0
+ 13) lib/UCX/1.15.0-GCCcore-13.2.0
+ 14) lib/libfabric/1.19.0-GCCcore-13.2.0
+ 15) lib/PMIx/4.2.6-GCCcore-13.2.0
+ 16) lib/UCC/1.2.0-GCCcore-13.2.0
+ 17) mpi/OpenMPI/4.1.6-GCC-13.2.0
+ 18) numlib/OpenBLAS/0.3.24-GCC-13.2.0
+ 19) lib/FlexiBLAS/3.3.1-GCC-13.2.0
+ 20) numlib/FFTW/3.3.10-GCC-13.2.0
+ 21) toolchain/gompi/2023b
+ 22) numlib/FFTW.MPI/3.3.10-gompi-2023b
+ 23) numlib/ScaLAPACK/2.2.0-gompi-2023b-fb
+ 24) toolchain/foss/2023b
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+
+ 
+
+g++ (GCC) 13.2.0
+mpirun (Open MPI) 4.1.6
+commit      : 114602d458d1034faa52b71e4c15aba9b3a17698
+build       : ok, 196824 bytes
+input       : 84 bytes, sha256 8a18c3bde4485866bb24d3290da206003a4690112f2b01d6e77d9a3f7913376b
+=== idle 60 s, before ; temps i350bb=53000 coretemp=45000 coretemp=43000  ===
+=== rep 1/10 : step 6064094.0 : start 2026-09-29T19:23:41+02:00 ; temps i350bb=53000 coretemp=44000 coretemp=44000  ===
+rep 1 end : 2026-09-29T19:27:07+02:00 ; temps i350bb=55000 coretemp=70000 coretemp=61000 
+=== rep 2/10 : step 6064094.1 : start 2026-09-29T19:27:07+02:00 ; temps i350bb=55000 coretemp=70000 coretemp=61000  ===
+rep 2 end : 2026-09-29T19:30:33+02:00 ; temps i350bb=57000 coretemp=70000 coretemp=57000 
+=== rep 3/10 : step 6064094.2 : start 2026-09-29T19:30:33+02:00 ; temps i350bb=57000 coretemp=70000 coretemp=57000  ===
+rep 3 end : 2026-09-29T19:33:58+02:00 ; temps i350bb=58000 coretemp=68000 coretemp=61000 
+=== rep 4/10 : step 6064094.3 : start 2026-09-29T19:33:58+02:00 ; temps i350bb=58000 coretemp=68000 coretemp=61000  ===
+rep 4 end : 2026-09-29T19:37:21+02:00 ; temps i350bb=59000 coretemp=73000 coretemp=57000 
+=== rep 5/10 : step 6064094.4 : start 2026-09-29T19:37:21+02:00 ; temps i350bb=59000 coretemp=73000 coretemp=57000  ===
+rep 5 end : 2026-09-29T19:40:44+02:00 ; temps i350bb=59000 coretemp=74000 coretemp=58000 
+=== rep 6/10 : step 6064094.5 : start 2026-09-29T19:40:44+02:00 ; temps i350bb=59000 coretemp=74000 coretemp=58000  ===
+rep 6 end : 2026-09-29T19:44:10+02:00 ; temps i350bb=59000 coretemp=68000 coretemp=63000 
+=== rep 7/10 : step 6064094.6 : start 2026-09-29T19:44:10+02:00 ; temps i350bb=59000 coretemp=68000 coretemp=63000  ===
+rep 7 end : 2026-09-29T19:47:36+02:00 ; temps i350bb=59000 coretemp=74000 coretemp=58000 
+=== rep 8/10 : step 6064094.7 : start 2026-09-29T19:47:36+02:00 ; temps i350bb=59000 coretemp=74000 coretemp=58000  ===
+rep 8 end : 2026-09-29T19:51:01+02:00 ; temps i350bb=59000 coretemp=68000 coretemp=64000 
+=== rep 9/10 : step 6064094.8 : start 2026-09-29T19:51:02+02:00 ; temps i350bb=59000 coretemp=68000 coretemp=64000  ===
+rep 9 end : 2026-09-29T19:54:28+02:00 ; temps i350bb=59000 coretemp=71000 coretemp=58000 
+=== rep 10/10 : step 6064094.9 : start 2026-09-29T19:54:28+02:00 ; temps i350bb=59000 coretemp=71000 coretemp=58000  ===
+rep 10 end : 2026-09-29T19:57:54+02:00 ; temps i350bb=59000 coretemp=69000 coretemp=60000 
+=== idle 60 s, after ; temps i350bb=59000 coretemp=69000 coretemp=60000  ===
+=== finished: 2026-09-29T19:58:54+02:00 ===
+runs in /home/users/fdollaku/green_it/results/run-6064094

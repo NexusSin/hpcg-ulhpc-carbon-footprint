@@ -1,0 +1,21 @@
+=== provenance ===
+job         : 16213173 (aion), configs [ref=ref@ f20=ref@2000000 spread=ref@@spread spread20=ref@2000000@spread] x 10 rounds, then 100 runs of the kept one
+node        : aion-0268
+cpu         : AMD EPYC 7H12 64-Core Processor
+numa        : 0-15 16-31 32-47 48-63 64-79 80-95 96-111 112-127 
+kernel      : 4.18.0-553.183.1.el8_10.x86_64
+slurm       : slurm 25.11.8
+started     : 2026-11-09T12:57:18+01:00
+cpufreq     : driver acpi-cpufreq governor performance min 1500000 max 2600000 avail [2600000 2000000 1500000 ] governors [conservative ondemand userspace powersave performance schedutil ]
+g++ (GCC) 13.2.0
+commit      : 114602d458d1034faa52b71e4c15aba9b3a17698, 0 modified tracked files
+compile     : mpicxx -c  -I./src -I./src/MPI_GCC_OMP  -O3 -ffast-math -ftree-vectorize -ftree-vectorizer-verbose=0 -fopenmp -I/home/users/fdollaku/green_it/hpcg/src /home/users/fdollaku/green_it/hpcg/src/CG.cpp -o src/CG.o
+build ref   : ok, 188008 bytes, native=znver2
+input       : 84 bytes, sha256 8a18c3bde4485866bb24d3290da206003a4690112f2b01d6e77d9a3f7913376b
+spread      : map_cpu:0,16,32,48,64,80,96,112,4,20,36,52,68,84,100,116,8,24,40,56,72,88,104,120,12,28,44,60
+=== idle 60 s, before ===
+--- run 1/40
+=== run 1 ref (build ref, cap none, bind default) : start 2026-11-09T12:58:21+01:00 ===
+run 1 ref end : 2026-11-09T13:00:27+01:00 ; max-freq  128 2600000  ; cores 0 1 2 3 16 17 18 19 32 33 34 35 48 49 50 51 64 65 66 80 81 82 96 97 98 112 113 114  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.784 ; result is VALID
+--- run 2/40
+=== run 2 f20 (build ref, cap 2000000, bind default) : start 2026-11-09T13:00:27+01:00 ===

@@ -1,0 +1,219 @@
+=== provenance ===
+job         : 16213835 (aion), configs [spread20=ref@2000000@spread] x 0 rounds, then 100 runs of the kept one
+node        : aion-0273
+cpu         : AMD EPYC 7H12 64-Core Processor
+numa        : 0-15 16-31 32-47 48-63 64-79 80-95 96-111 112-127 
+kernel      : 4.18.0-553.183.1.el8_10.x86_64
+slurm       : slurm 25.11.8
+started     : 2026-11-09T13:33:58+01:00
+cpufreq     : driver acpi-cpufreq governor performance min 1500000 max 2600000 avail [2600000 2000000 1500000 ] governors [conservative ondemand userspace powersave performance schedutil ]
+g++ (GCC) 13.2.0
+commit      : 114602d458d1034faa52b71e4c15aba9b3a17698, 0 modified tracked files
+compile     : mpicxx -c  -I./src -I./src/MPI_GCC_OMP  -O3 -ffast-math -ftree-vectorize -ftree-vectorizer-verbose=0 -fopenmp -I/home/users/fdollaku/green_it/hpcg/src /home/users/fdollaku/green_it/hpcg/src/CG.cpp -o src/CG.o
+build ref   : ok, 188008 bytes, native=znver2
+input       : 84 bytes, sha256 8a18c3bde4485866bb24d3290da206003a4690112f2b01d6e77d9a3f7913376b
+spread      : map_cpu:0,4,8,12,16,20,24,28,32,36,40,44,48,52,56,60,64,68,72,80,84,88,96,100,104,112,116,120
+=== idle 60 s, before ===
+=== kept, as chosen from earlier allocations: spread20 ===
+=== after 1 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:35:01+01:00 ===
+after 1 spread20 end : 2026-11-09T13:36:52+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4289 ; result is VALID
+=== after 2 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:36:52+01:00 ===
+after 2 spread20 end : 2026-11-09T13:38:43+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6298 ; result is VALID
+=== after 3 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:38:43+01:00 ===
+after 3 spread20 end : 2026-11-09T13:40:34+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4592 ; result is VALID
+=== after 4 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:40:34+01:00 ===
+after 4 spread20 end : 2026-11-09T13:42:25+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3834 ; result is VALID
+=== after 5 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:42:25+01:00 ===
+after 5 spread20 end : 2026-11-09T13:44:16+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3593 ; result is VALID
+=== after 6 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:44:16+01:00 ===
+after 6 spread20 end : 2026-11-09T13:46:08+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.1806 ; result is VALID
+=== after 7 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:46:08+01:00 ===
+after 7 spread20 end : 2026-11-09T13:47:59+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3762 ; result is VALID
+=== after 8 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:48:00+01:00 ===
+after 8 spread20 end : 2026-11-09T13:49:51+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3389 ; result is VALID
+=== after 9 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:49:51+01:00 ===
+after 9 spread20 end : 2026-11-09T13:51:42+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3369 ; result is VALID
+=== after 10 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:51:43+01:00 ===
+after 10 spread20 end : 2026-11-09T13:53:34+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3029 ; result is VALID
+=== after 11 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:53:34+01:00 ===
+after 11 spread20 end : 2026-11-09T13:55:25+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3317 ; result is VALID
+=== after 12 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:55:25+01:00 ===
+after 12 spread20 end : 2026-11-09T13:57:17+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4341 ; result is VALID
+=== after 13 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:57:17+01:00 ===
+after 13 spread20 end : 2026-11-09T13:59:08+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4733 ; result is VALID
+=== after 14 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T13:59:08+01:00 ===
+after 14 spread20 end : 2026-11-09T14:00:58+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.8578 ; result is VALID
+=== after 15 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:00:58+01:00 ===
+after 15 spread20 end : 2026-11-09T14:02:49+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2349 ; result is VALID
+=== after 16 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:02:49+01:00 ===
+after 16 spread20 end : 2026-11-09T14:04:41+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2888 ; result is VALID
+=== after 17 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:04:41+01:00 ===
+after 17 spread20 end : 2026-11-09T14:06:31+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.7467 ; result is VALID
+=== after 18 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:06:31+01:00 ===
+after 18 spread20 end : 2026-11-09T14:08:22+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4949 ; result is VALID
+=== after 19 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:08:22+01:00 ===
+after 19 spread20 end : 2026-11-09T14:10:13+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3837 ; result is VALID
+=== after 20 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:10:14+01:00 ===
+after 20 spread20 end : 2026-11-09T14:12:05+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4279 ; result is VALID
+=== after 21 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:12:05+01:00 ===
+after 21 spread20 end : 2026-11-09T14:13:56+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3158 ; result is VALID
+=== after 22 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:13:56+01:00 ===
+after 22 spread20 end : 2026-11-09T14:15:47+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3887 ; result is VALID
+=== after 23 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:15:47+01:00 ===
+after 23 spread20 end : 2026-11-09T14:17:38+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6092 ; result is VALID
+=== after 24 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:17:38+01:00 ===
+after 24 spread20 end : 2026-11-09T14:19:30+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2526 ; result is VALID
+=== after 25 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:19:30+01:00 ===
+after 25 spread20 end : 2026-11-09T14:21:21+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.368 ; result is VALID
+=== after 26 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:21:21+01:00 ===
+after 26 spread20 end : 2026-11-09T14:23:12+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4176 ; result is VALID
+=== after 27 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:23:12+01:00 ===
+after 27 spread20 end : 2026-11-09T14:25:03+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.5698 ; result is VALID
+=== after 28 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:25:03+01:00 ===
+after 28 spread20 end : 2026-11-09T14:26:54+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4618 ; result is VALID
+=== after 29 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:26:54+01:00 ===
+after 29 spread20 end : 2026-11-09T14:28:46+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2976 ; result is VALID
+=== after 30 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:28:46+01:00 ===
+after 30 spread20 end : 2026-11-09T14:30:37+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.314 ; result is VALID
+=== after 31 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:30:37+01:00 ===
+after 31 spread20 end : 2026-11-09T14:32:28+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4544 ; result is VALID
+=== after 32 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:32:28+01:00 ===
+after 32 spread20 end : 2026-11-09T14:34:19+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.7537 ; result is VALID
+=== after 33 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:34:19+01:00 ===
+after 33 spread20 end : 2026-11-09T14:36:10+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3365 ; result is VALID
+=== after 34 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:36:10+01:00 ===
+after 34 spread20 end : 2026-11-09T14:38:01+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3716 ; result is VALID
+=== after 35 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:38:01+01:00 ===
+after 35 spread20 end : 2026-11-09T14:39:51+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.8591 ; result is VALID
+=== after 36 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:39:51+01:00 ===
+after 36 spread20 end : 2026-11-09T14:41:43+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2084 ; result is VALID
+=== after 37 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:41:43+01:00 ===
+after 37 spread20 end : 2026-11-09T14:43:33+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.7108 ; result is VALID
+=== after 38 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:43:33+01:00 ===
+after 38 spread20 end : 2026-11-09T14:45:24+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4451 ; result is VALID
+=== after 39 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:45:24+01:00 ===
+after 39 spread20 end : 2026-11-09T14:47:16+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3611 ; result is VALID
+=== after 40 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:47:16+01:00 ===
+after 40 spread20 end : 2026-11-09T14:49:07+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2369 ; result is VALID
+=== after 41 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:49:07+01:00 ===
+after 41 spread20 end : 2026-11-09T14:50:58+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4261 ; result is VALID
+=== after 42 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:50:58+01:00 ===
+after 42 spread20 end : 2026-11-09T14:52:49+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4689 ; result is VALID
+=== after 43 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:52:49+01:00 ===
+after 43 spread20 end : 2026-11-09T14:54:40+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6675 ; result is VALID
+=== after 44 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:54:40+01:00 ===
+after 44 spread20 end : 2026-11-09T14:56:31+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.5252 ; result is VALID
+=== after 45 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:56:31+01:00 ===
+after 45 spread20 end : 2026-11-09T14:58:22+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3205 ; result is VALID
+=== after 46 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T14:58:22+01:00 ===
+after 46 spread20 end : 2026-11-09T15:00:13+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4466 ; result is VALID
+=== after 47 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:00:13+01:00 ===
+after 47 spread20 end : 2026-11-09T15:02:05+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3652 ; result is VALID
+=== after 48 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:02:05+01:00 ===
+after 48 spread20 end : 2026-11-09T15:03:55+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6938 ; result is VALID
+=== after 49 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:03:55+01:00 ===
+after 49 spread20 end : 2026-11-09T15:05:47+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2947 ; result is VALID
+=== after 50 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:05:47+01:00 ===
+after 50 spread20 end : 2026-11-09T15:07:38+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4982 ; result is VALID
+=== after 51 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:07:38+01:00 ===
+after 51 spread20 end : 2026-11-09T15:09:29+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.5456 ; result is VALID
+=== after 52 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:09:29+01:00 ===
+after 52 spread20 end : 2026-11-09T15:11:20+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3857 ; result is VALID
+=== after 53 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:11:20+01:00 ===
+after 53 spread20 end : 2026-11-09T15:13:12+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.289 ; result is VALID
+=== after 54 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:13:12+01:00 ===
+after 54 spread20 end : 2026-11-09T15:15:03+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4336 ; result is VALID
+=== after 55 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:15:03+01:00 ===
+after 55 spread20 end : 2026-11-09T15:16:53+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6551 ; result is VALID
+=== after 56 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:16:53+01:00 ===
+after 56 spread20 end : 2026-11-09T15:18:45+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4141 ; result is VALID
+=== after 57 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:18:45+01:00 ===
+after 57 spread20 end : 2026-11-09T15:20:35+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6211 ; result is VALID
+=== after 58 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:20:35+01:00 ===
+after 58 spread20 end : 2026-11-09T15:22:26+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6582 ; result is VALID
+=== after 59 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:22:26+01:00 ===
+after 59 spread20 end : 2026-11-09T15:24:16+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.758 ; result is VALID
+=== after 60 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:24:16+01:00 ===
+after 60 spread20 end : 2026-11-09T15:26:08+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.1883 ; result is VALID
+=== after 61 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:26:08+01:00 ===
+after 61 spread20 end : 2026-11-09T15:27:59+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.5232 ; result is VALID
+=== after 62 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:27:59+01:00 ===
+after 62 spread20 end : 2026-11-09T15:29:50+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4486 ; result is VALID
+=== after 63 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:29:50+01:00 ===
+after 63 spread20 end : 2026-11-09T15:31:39+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.8944 ; result is VALID
+=== after 64 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:31:39+01:00 ===
+after 64 spread20 end : 2026-11-09T15:33:31+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3214 ; result is VALID
+=== after 65 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:33:31+01:00 ===
+after 65 spread20 end : 2026-11-09T15:35:22+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3995 ; result is VALID
+=== after 66 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:35:22+01:00 ===
+after 66 spread20 end : 2026-11-09T15:37:13+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.5515 ; result is VALID
+=== after 67 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:37:13+01:00 ===
+after 67 spread20 end : 2026-11-09T15:39:04+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.5111 ; result is VALID
+=== after 68 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:39:04+01:00 ===
+after 68 spread20 end : 2026-11-09T15:40:55+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4603 ; result is VALID
+=== after 69 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:40:55+01:00 ===
+after 69 spread20 end : 2026-11-09T15:42:46+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4009 ; result is VALID
+=== after 70 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:42:46+01:00 ===
+after 70 spread20 end : 2026-11-09T15:44:38+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3644 ; result is VALID
+=== after 71 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:44:38+01:00 ===
+after 71 spread20 end : 2026-11-09T15:46:29+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4192 ; result is VALID
+=== after 72 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:46:29+01:00 ===
+after 72 spread20 end : 2026-11-09T15:48:20+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4098 ; result is VALID
+=== after 73 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:48:20+01:00 ===
+after 73 spread20 end : 2026-11-09T15:50:11+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2374 ; result is VALID
+=== after 74 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:50:11+01:00 ===
+after 74 spread20 end : 2026-11-09T15:52:03+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4228 ; result is VALID
+=== after 75 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:52:03+01:00 ===
+after 75 spread20 end : 2026-11-09T15:53:54+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.5168 ; result is VALID
+=== after 76 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:53:54+01:00 ===
+after 76 spread20 end : 2026-11-09T15:55:45+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3227 ; result is VALID
+=== after 77 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:55:45+01:00 ===
+after 77 spread20 end : 2026-11-09T15:57:37+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3408 ; result is VALID
+=== after 78 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:57:37+01:00 ===
+after 78 spread20 end : 2026-11-09T15:59:28+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3579 ; result is VALID
+=== after 79 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T15:59:28+01:00 ===
+after 79 spread20 end : 2026-11-09T16:01:19+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6061 ; result is VALID
+=== after 80 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:01:19+01:00 ===
+after 80 spread20 end : 2026-11-09T16:03:09+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6098 ; result is VALID
+=== after 81 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:03:09+01:00 ===
+after 81 spread20 end : 2026-11-09T16:05:01+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2808 ; result is VALID
+=== after 82 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:05:01+01:00 ===
+after 82 spread20 end : 2026-11-09T16:06:52+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.5142 ; result is VALID
+=== after 83 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:06:52+01:00 ===
+after 83 spread20 end : 2026-11-09T16:08:43+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3755 ; result is VALID
+=== after 84 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:08:43+01:00 ===
+after 84 spread20 end : 2026-11-09T16:10:35+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.384 ; result is VALID
+=== after 85 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:10:35+01:00 ===
+after 85 spread20 end : 2026-11-09T16:12:26+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2226 ; result is VALID
+=== after 86 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:12:26+01:00 ===
+after 86 spread20 end : 2026-11-09T16:14:17+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6411 ; result is VALID
+=== after 87 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:14:17+01:00 ===
+after 87 spread20 end : 2026-11-09T16:16:08+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4654 ; result is VALID
+=== after 88 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:16:08+01:00 ===
+after 88 spread20 end : 2026-11-09T16:18:00+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3909 ; result is VALID
+=== after 89 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:18:00+01:00 ===
+after 89 spread20 end : 2026-11-09T16:19:50+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.5135 ; result is VALID
+=== after 90 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:19:50+01:00 ===
+after 90 spread20 end : 2026-11-09T16:21:42+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2932 ; result is VALID
+=== after 91 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:21:42+01:00 ===
+after 91 spread20 end : 2026-11-09T16:23:33+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6279 ; result is VALID
+=== after 92 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:23:33+01:00 ===
+after 92 spread20 end : 2026-11-09T16:25:24+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3555 ; result is VALID
+=== after 93 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:25:24+01:00 ===
+after 93 spread20 end : 2026-11-09T16:27:15+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.3874 ; result is VALID
+=== after 94 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:27:15+01:00 ===
+after 94 spread20 end : 2026-11-09T16:29:07+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4816 ; result is VALID
+=== after 95 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:29:07+01:00 ===
+after 95 spread20 end : 2026-11-09T16:30:58+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2949 ; result is VALID
+=== after 96 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:30:58+01:00 ===
+after 96 spread20 end : 2026-11-09T16:32:49+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4672 ; result is VALID
+=== after 97 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:32:49+01:00 ===
+after 97 spread20 end : 2026-11-09T16:34:41+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.2845 ; result is VALID
+=== after 98 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:34:41+01:00 ===
+after 98 spread20 end : 2026-11-09T16:36:32+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.6138 ; result is VALID
+=== after 99 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:36:32+01:00 ===
+after 99 spread20 end : 2026-11-09T16:38:22+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.5642 ; result is VALID
+=== after 100 spread20 (build ref, cap 2000000, bind spread) : start 2026-11-09T16:38:22+01:00 ===
+after 100 spread20 end : 2026-11-09T16:40:13+01:00 ; max-freq  128 2000000  ; cores 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 80 84 88 96 100 104 112 116 120  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=35.4605 ; result is VALID
+=== idle 60 s, after ===
+=== finished: 2026-11-09T16:41:14+01:00 ===

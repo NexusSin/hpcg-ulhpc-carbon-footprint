@@ -1,0 +1,7 @@
+JobID|ElapsedRaw|ConsumedEnergyRaw|CPUTimeRAW|TotalCPU|TRESUsageInTot|TRESUsageOutTot|AveCPUFreq|State|NodeList|AllocTRES
+6064383|651|158580|18228|04:02:32||||COMPLETED|iris-151|billing=56,cpu=28,energy=158580,mem=112G,node=1
+6064383.batch|651|158575|18228|00:34.725|cpu=00:00:34,energy=158575,fs/disk=113962804,mem=867648K,pages=5,vmem=43852K|energy=215,fs/disk=2302763|3.70M|COMPLETED|iris-151|cpu=28,mem=112G,node=1
+6064383.extern|651|158580|18228|00:00:00|energy=158580|energy=225|0|COMPLETED|iris-151|billing=56,cpu=28,mem=112G,node=1
+6064383.0|177|48956|4956|01:21:23|cpu=01:21:23,energy=48956,fs/disk=185505176,mem=28334936K,pages=7,vmem=28256112K|energy=16,fs/disk=120712985|103.60M|COMPLETED|iris-151|cpu=28,mem=112G,node=1
+6064383.1|175|48939|4900|01:20:30|cpu=01:20:30,energy=48939,fs/disk=185421104,mem=28331484K,pages=2,vmem=28252644K|energy=16,fs/disk=120712960|103.60M|COMPLETED|iris-151|cpu=28,mem=112G,node=1
+6064383.2|174|49052|4872|01:20:03|cpu=01:20:03,energy=49052,fs/disk=185149920,mem=28330152K,pages=2,vmem=28252364K|energy=17,fs/disk=120706207|103.60M|COMPLETED|iris-151|cpu=28,mem=112G,node=1

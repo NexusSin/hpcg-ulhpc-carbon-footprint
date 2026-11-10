@@ -1,0 +1,974 @@
+% =====================================================================
+% Green IT 2026 (MICS2-63): Short Paper, HPC Job Track -- paper v1 (D1)
+%
+% Built from the professor's template (src/short-paper-hpc.tex of
+% student-project-templates.zip) and the Homework 4 copy.
+% Every measured figure comes from scripts/v1_numbers.py, which writes
+% v1-numbers.tex and v1-tables.tex; rerun it after new runs land in
+% results/, then latexmk. Nothing in the text needs retyping.
+%
+% Build:  latexmk        (run it from the folder above this one)
+% =====================================================================
+\documentclass[conference,a4paper]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{url}
+% Let long URLs in the reference list break after slashes, dots and hyphens.
+\def\UrlBreaks{\do\/\do\.\do\-\do\_}
+\usepackage{amsmath}
+% A field of the SLURM job record, or another identifier, set in type.
+\newcommand{\field}[1]{\texttt{#1}}
+\raggedbottom
+% IEEEtran sets a conference abstract in bold; set it in the normal weight.
+\usepackage{etoolbox}
+\patchcmd{\abstract}{\bfseries}{\mdseries}{}{\PackageWarningNoLine{short-paper}{abstract still bold}}
+\usepackage{array}
+% A ragged-right paragraph column, for the tables of Appendix A.
+\newcolumntype{R}[1]{>{\raggedright\arraybackslash}p{#1}}
+% Clickable PDF. The PDF's author field stays empty: the paper is reviewed
+% double-blind, and pdfusetitle would copy the author block into it.
+\usepackage{xcolor}
+\usepackage[colorlinks=true, linkcolor=blue!55!black, citecolor=blue!55!black,
+            urlcolor=blue!55!black, bookmarksnumbered=true,
+            pdftitle={Life Cycle Assessment of HPCG on the IRIS and Aion Clusters}]{hyperref}
+\input{v1-numbers}
+\input{v1-tables}
+\newcommand{\ProjectRepo}{\url{https://github.com/NexusSin/hpcg-ulhpc-carbon-footprint.git}}
+
+% Guidance notes of the template, kept switched off.
+\newif\ifguidance
+\guidancefalse
+\newcommand{\guidance}[1]{\ifguidance{\itshape\small #1\par\medskip}\fi}
+
+\begin{document}
+
+\title{Life Cycle Assessment of HPCG on the IRIS and Aion Clusters: Environmental Impact and Optimisation}
+
+\author{\IEEEauthorblockN{Fabio Dollaku}
+\IEEEauthorblockA{Master in High Performance Computing\\
+University of Luxembourg\\
+fabio.dollaku.001@student.uni.lu}}
+
+\maketitle
+
+\begin{abstract}
+This paper assesses the carbon footprint of the HPCG benchmark on the two
+clusters of the University of Luxembourg, air-cooled IRIS and liquid-cooled
+Aion, and then tries to lower it without changing the benchmark's code.
+Following ISO~14040 and 14044, HPCG was run 100 times on one reserved node of
+each cluster with 28 processes. The energy of every run was read from the
+processors' counters, and the site's overhead and the node's manufacture were
+added. On average a run emits \IrisGrams\,gCO\textsubscript{2}e on IRIS and
+\AionGrams\,g on Aion. Embodied and operational emissions stand at
+\IrisEmbOpRatio\ to 1 on IRIS and \AionEmbOpRatio\ to 1 on Aion, so the time a
+run holds its node matters as much as the power it draws. With the assumed
+facility efficiencies, site overhead accounts for \GapShareSite\ of the
+estimated gap between the clusters.
+HPCG's own build already compiles with \texttt{-O3}. Of the settings a user
+controls, compiler flags, a cap on the processor clock and the placement of the
+processes, \OptBestText, while
+moving the job from IRIS to Aion cuts it by \AionSave.
+\end{abstract}
+
+% ---------------------------------------------------------------------
+
+\section{Introduction}\label{sec:intro}
+
+Users of a shared cluster rarely see what their jobs cost the environment. The
+scheduler reports time, sometimes energy, but never emissions. The University of
+Luxembourg runs two clusters side by side: IRIS, in service since 2017, with
+Intel processors cooled by air, and Aion, in service since 2021, with AMD
+processors cooled by liquid. A user who sends a job to one of them picks a
+processor, a memory system and a cooling technology at once, usually without
+noticing.
+
+The job studied here is HPCG, the High Performance Conjugate Gradients
+benchmark~\cite{hpcg-repo}. It solves the kind of large sparse linear system found in many
+simulation codes, a set of equations in which most coefficients are zero. Its
+speed depends more on the memory than on the processor, which makes it a good
+test of how a whole node, not just its processor, turns electricity into
+computation. The code is HPCG's public reference implementation,
+\url{https://github.com/hpcg-benchmark/hpcg}, used unmodified at commit
+\texttt{114602d458d1034faa52b71e4c15aba9b3a17698}, with the fixed input of
+Table~\ref{tab:frozen}. The method is life cycle assessment, standardised in
+ISO~14040~\cite{iso14040} and 14044~\cite{iso14044}. Besides the energy the node draws during the run, it counts the site's
+cooling and power distribution, and the run's share of the node's manufacture.
+
+The research question is: how large is the mean carbon footprint of a run of
+HPCG on IRIS and on Aion, how much of the difference between the two clusters
+comes from the hardware and how much from the cooling, and how much of the
+footprint can the settings a cluster user controls remove without touching the
+code? The submission scripts, job logs and results are available in the
+project repository at \ProjectRepo.
+
+% ---------------------------------------------------------------------
+\section{Related Work}
+
+This study draws on four strands of work.
+
+\emph{Estimating the footprint of computation.} Lannelongue et
+al.~\cite{lannelongue2021} reduce the footprint of a computation to quantities a
+user can supply without measuring anything, such as run time, the cores and
+memory used, a usage factor, a power draw per core and per gigabyte, a PUE and a
+grid intensity. By their own account the estimate counts the electricity of the
+task and leaves out the manufacture of the hardware. Here the energy is measured
+on the node and the manufacture is added; on IRIS and Aion it turns out to be
+half of the footprint or more (Section~\ref{sec:reporting}).
+
+\emph{Reading energy from the processor.} The inventory rests on the processors'
+built-in energy counters. Khan et al.~\cite{khan2018} compared Intel's counters
+with power measured at the plug and found the two highly correlated, at a
+negligible cost to the running code. They tested Intel processors only; how
+accurate the counters are on Aion's AMD processors is still open, and
+Section~\ref{sec:threats} counts it among the threats.
+
+\emph{What HPCG measures.} Dongarra, Heroux and Luszczek~\cite{dongarra2016}
+introduced HPCG because LINPACK, the benchmark behind the TOP500 list, no longer
+reflects the simulations that drive large machines. Those simulations solve
+sparse systems, which stress the memory more than the peak arithmetic of the
+processor. HPCG reports a rate of floating-point operations and says nothing
+about the energy behind it, which is what this paper adds.
+
+\emph{Life-cycle models of computing.} Wadenstein and
+Vanderbauwhede~\cite{wadenstein2025} combine the embodied carbon of servers, the
+electricity they draw and the site's PUE in one life-cycle model. Where
+electricity is low in carbon, they find, the manufacture of the hardware
+dominates. Their model covers a computing centre over decades; the same three
+terms are applied here to a single job.
+
+% ---------------------------------------------------------------------
+\section{Life Cycle Assessment}
+
+The five subsections follow the four phases of ISO~14040~\cite{iso14040} and the
+reporting that ISO~14044~\cite{iso14044} requires after them. All tables are in
+Appendix~\ref{app:figures}.
+
+\subsection{Goal and scope definition}\label{sec:goalscope}
+
+The goal is to quantify the mean environmental footprint of a run of HPCG,
+over 100 runs on each of IRIS and Aion, two clusters that differ in processor
+architecture, memory, node design and cooling technology, and to identify the
+sources of the difference. Running the same job on both lets us compare the
+measured node energy and estimate the contributions of facility overhead and
+hardware manufacture under the stated assumptions. The study is aimed at users choosing where
+to run jobs and at system operators.
+
+\emph{Functional unit.} One run of HPCG with a fixed input, submitted through
+SLURM, the clusters' job scheduler, on one compute node reserved for the job
+alone, with the same number of parallel processes (MPI ranks) on both clusters.
+Since HPCG adapts its amount of work to a fixed duration, results are reported
+per run and per unit of computational work. The job is run 100 times on one node
+of each cluster for the baseline. The means and standard deviations describe
+the difference between the two nodes and the variation within each set of runs.
+
+\emph{Impact criterion.} The carbon footprint in CO\textsubscript{2}-equivalent
+(IPCC~2021~\cite{ipcc2021}, GWP100). Energy, water and hardware use are also
+reported in physical units.
+
+\emph{System boundary.} Every part of the cluster that the job uses, in four
+components: the compute node, over its whole life cycle; the interconnect and
+the shared storage, in their use phase; and the site, comprising power
+distribution, cooling and the shared services, such as the login node and the
+scheduler, through which the job passes. The user's workstation and the one-off
+compilation of the code are excluded.
+
+\subsection{Life cycle inventory}\label{sec:lci}
+
+The inventory quantifies the physical flows of a run, per component and as the
+mean of the 100 runs. It rests
+on primary data measured on the hardware during the runs, with secondary data
+only where a quantity cannot be measured from within a job.
+
+\emph{Measurement protocol.} On each cluster the job runs 100 times back to back
+in one allocation, on a node reserved for it alone so that no other workload
+enters the readings. No run is discarded. With a hundred runs the mean is steady
+enough for the difference between the clusters to stand out from the variation
+between runs. The footprint is computed run by run and reported as the mean of
+the 100 runs, with its standard deviation. Test jobs in September 2026 established which energy readings each
+cluster offers: IRIS's processors report the energy of their packages and of the memory,
+Aion's of their packages only. Section~\ref{sec:threats} sizes the difference
+this makes.
+
+\emph{Allocation.} Burdens shared by many jobs, such as a node's manufacture, are
+allocated to a run in proportion to the time it holds the node, out of all the
+time the node is allocated to jobs over its service life.
+
+\subsubsection{Compute node} Processor energy, and memory energy where the
+hardware reports it, is read from the processors' built-in energy counters (RAPL)
+before and after each run, with the scheduler's energy record as a
+cross-check where available. During each run the system also records
+the run time, processor utilisation and clock frequency, chip and network-card
+temperatures, the memory reserved and used, and local disk traffic; idle power is
+measured before and after the runs, and HPCG reports the work done. The
+power supply and fans cannot be metered from within a job, a gap stated with the
+results. Embodied emissions come from the manufacturer's product carbon
+footprint where one exists and from a modelled substitute otherwise, both
+secondary sources.
+
+\subsubsection{Interconnect} Traffic through the node's network interfaces is
+read from their port counters in every run; the job, confined to one node,
+exchanges no data with other compute nodes. The port counters include background
+traffic. The measurements provide no per-job estimate of switch electricity.
+
+\subsubsection{Storage} The run directories preserve the benchmark output files.
+Their sizes measure the output saved on disk. The scheduler records bytes at
+the system-call level, which can include cached reads. These records do not
+measure physical traffic or electricity at the shared file servers.
+
+\subsubsection{Site} Cooling and power distribution cannot be metered from
+within a job. They enter through the power usage effectiveness (PUE), the ratio
+of facility to IT energy. Neither room publishes a measured PUE, so the values
+come from European averages for rooms of the same size and from the operator's
+design target; water use is estimated from the same averages.
+
+\subsection{Life cycle impact assessment}\label{sec:lcia}
+
+The impact assessment turns the flows of the inventory into an environmental
+impact. It uses a single criterion, climate change, characterised with the
+IPCC~2021 method~\cite{ipcc2021} and expressed as the global warming potential
+over 100 years (GWP100), in grams of CO\textsubscript{2}-equivalent. Every
+factor is read in this indicator; a source that counts carbon dioxide alone,
+follows an earlier IPCC report or does not say which is flagged where it is
+used. A carbon footprint leaves out the other
+categories of a full assessment, among them water use, the depletion of
+minerals and metals, and toxicity. Water and hardware use still appear in
+physical units next to the footprint, but they are not converted into an impact.
+
+\emph{Inventory values.} Table~\ref{tab:runs} summarises the 100 runs on each
+cluster. An
+average IRIS run holds its node for \IrisTime\,s and draws \IrisEnergy\,kJ
+(standard deviation \IrisEnergySd\,kJ) in the processor packages and the memory,
+\IrisPower\,W on average. An Aion run takes \AionTime\,s and \AionEnergy\,kJ, or
+\AionPower\,W, all of it in the packages, since Aion's processors report no
+memory energy. Table~\ref{tab:inventory} gives the mean of every other quantity
+measured per run.
+
+\emph{Factors.} Three factors carry the inventory to grams
+(Table~\ref{tab:factors}). For the grid I declare \Grid\,gCO\textsubscript{2}
+per kWh, the intensity that the Luxembourg regulator, ILR, publishes for all the
+electricity supplied to final customers in the country in 2025~\cite{ilr2026},
+read on 23 October 2026. Luxembourg imports most of its electricity, so I prefer
+a figure for the electricity consumed in the country, imports included, to one
+for the electricity produced there. This one counts only the carbon dioxide of
+generation, a limit that Section~\ref{sec:threats} discusses, and it applies to
+the operational term alone, since the hardware was made in other countries.
+
+For the PUE I declare 1.63 for IRIS, the average that a 2025 assessment for the
+European Commission reports for data centres of 100 to 500\,kW~\cite{ec2025},
+the class of IRIS's 300\,kW air-cooled room~\cite{ulhpc-dc}. No measured value
+is published for Aion either. Its racks are cooled directly by liquid. In every
+blade a cold plate, fed by a separate hot-water circuit, takes the place of fans,
+and the operator describes the design as targeting a PUE very close to
+1~\cite{ulhpc-aion,ulhpc-dc}. I declare 1.1 for Aion, an assumption that
+Section~\ref{sec:threats} tests. Applying PUE to the measured processor and
+memory energy estimates the associated facility overhead, including cooling.
+
+For manufacture, transport and end of life, an IRIS node carries
+\IrisEmbKg\,kg CO\textsubscript{2}e: the 19.3\,\% of Dell's 6\,510\,kg product
+carbon footprint for the PowerEdge C6420 that lies outside its use
+phase~\cite{dell-c6420-pcf}. The use phase is left out because it is measured. No
+such figure exists for the Aion node, so I substitute the \AionEmbKg\,kg that
+Wadenstein and Vanderbauwhede model for a recent two-socket AMD
+server~\cite{wadenstein2025}. A node's allocated life is its years in service so
+far, \IrisLife\ for IRIS's Skylake nodes (since December 2017) and \AionLife\ for
+Aion (since late 2021)~\cite{ulhpc-iris,ulhpc-aion}, times the share of each
+cluster allocated to jobs over the last twelve months, \IrisAlloc\ and
+\AionAlloc\ (Table~\ref{tab:util}). This gives \IrisTalloc\ and \AionTalloc\
+years.
+
+\emph{From joules to grams.} The footprint of a run adds an operational and an
+embodied term:
+\begin{equation*}
+C_{\text{run}} = \underbrace{E_{\text{IT}} \cdot \text{PUE} \cdot
+I_{\text{grid}}}_{\text{operational}} +
+\underbrace{C_{\text{emb}} \cdot \frac{t_{\text{run}}}{T_{\text{alloc}}}}_{\text{embodied}}
+\end{equation*}
+Here $E_{\text{IT}}$ is the energy measured on the node during the run, converted
+from joules to kWh (1\,kWh = 3.6\,MJ), and $I_{\text{grid}}$ is the grid factor
+in gCO\textsubscript{2}e per kWh. In the embodied term, $C_{\text{emb}}$ is the
+node's embodied footprint in gCO\textsubscript{2}e, $t_{\text{run}}$ the time
+the run holds the node, and $T_{\text{alloc}}$ the time the node has been
+allocated to jobs over its service life so far, both in seconds. Dividing by the allocated
+time instead of the full service life charges the hours a node stands idle to
+the jobs that do run. The estimate omits the unmetered IT electricity of
+switches and shared storage.
+
+For the mean IRIS run, $E_{\text{IT}}$ is \IrisEnergy\,kJ, or
+\IrisEnergyWh\,Wh. At \Grid\,g per kWh this is \IrisGNode\,g for the node's
+electricity, and a PUE of 1.63 adds \IrisGSite\,g for cooling and power
+distribution. Holding the node for \IrisTime\,s of its \IrisTalloc\ allocated
+years carries \IrisGEmb\,g of its manufacture. Averaged over its 100 runs, a run
+of HPCG thus emits \IrisGrams\,gCO\textsubscript{2}e on IRIS (standard deviation
+\IrisGramsSd\,g), and over the 100 runs on Aion \AionGrams\,g (\AionGNode\,g of
+electricity, \AionGSite\,g of site overhead and \AionGEmb\,g of manufacture;
+Table~\ref{tab:footprint}). These figures are given to two significant digits,
+the precision of the factors.
+
+\subsection{Interpretation}\label{sec:interpretation}
+
+Interpretation, in the sense of ISO~14044, identifies the significant issues,
+checks the result for completeness, sensitivity and consistency, and draws
+conclusions against the goal of Section~\ref{sec:goalscope}. The figure of
+Section~\ref{sec:lcia} is the mean carbon footprint of a run of HPCG with a
+fixed input, over 100 runs on one reserved node of each cluster, including the
+site's overhead and the run's share of the node's manufacture.
+
+\emph{Embodied versus operational.} The most significant issue is the ratio
+between the two terms of the formula. On IRIS a run's share of the node's
+manufacture, \IrisGEmb\,g, equals its operational emissions, \IrisGOp\,g of
+electricity and site overhead together: a ratio of \IrisEmbOpRatio\ to 1, or
+\IrisShareEmb\ embodied against \IrisShareOp\ operational. On Aion the ratio is
+\AionEmbOpRatio\ to 1, \AionShareEmb\ against \AionShareOp: its low PUE removes
+most of the site overhead, and manufacture becomes the larger part. The ratio is
+not a property of the job alone. The grid factor scales only the operational
+term, the node's allocated life only the embodied one, and the run time scales
+both. At the EU-27 average of 209\,g per kWh~\cite{ries2026s2} the ratio falls
+to \IrisEmbOpRatioEU\ to 1 on IRIS and \AionEmbOpRatioEU\ to 1 on Aion, and
+operation dominates; on Luxembourg's low-carbon supply, manufacture weighs as
+much as electricity or more. A run's length therefore counts as much as its
+power, which decides where Section~\ref{sec:optimisation} looks for a saving.
+
+\emph{Meaning.} At the declared grid factor, an hour of a 5\,W LED bulb emits
+\LedGrams\,g. An average run on IRIS then amounts to \IrisLedHours\ hours of that bulb,
+\IrisCarMetres\,m in a small petrol car at 291\,g per km, or \IrisResidentShare\
+of the 28\,kg that a Luxembourg resident emits in a day~\cite{ries2026s2}. An
+average run on Aion amounts to \AionLedHours\ hours, \AionCarMetres\,m or
+\AionResidentShare.
+
+\emph{Variation between runs.} The 100 runs on each node barely differ. Between
+the lowest and the highest, their energy varies by \IrisWithinNodeSpread\ of the
+mean on IRIS and by \AionWithinNodeSpread\ on Aion (Table~\ref{tab:runs}). On
+Aion, runs 16 to 46 took about 4\,s longer at an unchanged clock and load.
+The records do not identify the cause of that slowdown. Those runs stay
+in the mean. The first run of each set was no
+slower than the rest, so a cold start does not show. The gap between the
+clusters is far larger than any of this, so it does not come from chance between
+runs.
+
+\emph{Comparing the clusters.} On average a run on IRIS emits \GapRatio\ times
+as much as one on Aion, and per unit of work the gap is wider still. Per second of node
+time IRIS emits only \PerSecondRatio\ times as much, but Aion's rating is
+\RatingRatio\ times higher. Dividing the whole-run footprint by the floating-point
+work reported for the timed phase gives \GapRatioWork\ times as much carbon per
+GFLOP on IRIS as on Aion (Table~\ref{tab:runs}). Of the estimated gap of
+\Gap\,g per run, the model assigns \GapShareSite\ to site overhead at the
+declared PUEs, \GapShareNode\ to the node's electricity and \GapShareEmb\ to its
+manufacture. Memory is the likeliest
+reason why IRIS's run takes longer, which raises both its electricity and its
+share of manufacture, although two machines cannot separate memory from
+processors (Section~\ref{sec:threats}). HPCG is limited by memory traffic, and an
+IRIS node fills only four
+of the six memory channels of each processor, for a peak of 154\,GB/s, where an
+Aion node fills all sixteen of its channels with faster memory, for
+410\,GB/s~\cite{ulhpc-iris,ulhpc-aion} (Table~\ref{tab:frozen}). Aion loses on
+another count: the job keeps 28 of its 128 cores busy, \AionBusy\ of the node's
+processing time, and the idle cores still draw power.
+
+\emph{Checks.} A top-down estimate tests the counter readings: the processors'
+rated power times the time a run holds the node. On IRIS that is
+\IrisTdp\,W times the run time, \IrisTopDown\,kJ, and the packages drew
+\IrisPkgOverTop\ of it, a plausible level for processors kept fully busy. On
+Aion it is \AionTdp\,W times the run time, \AionTopDown\,kJ, of which the
+packages drew \AionPkgOverTop, as expected when most cores idle. Neither reading
+exceeds its rated value or hints at a fault, and the result keeps the counter
+readings. On IRIS the scheduler's own energy record agrees with the counters
+within 0.14\,\%. Because the scheduler reads the same registers, the agreement
+checks how they are read rather than the sensors themselves. Finally, the sensitivity check of
+Section~\ref{sec:threats} recomputes the footprint with other grid factors and
+PUE values: the order of the two clusters holds in every case.
+
+\subsection{Reporting}\label{sec:reporting}
+
+Averaged over 100 runs on each cluster, a run of HPCG with the fixed input, on
+one node reserved for it with 28 processes, emits \IrisGrams\,gCO\textsubscript{2}e
+on IRIS and \AionGrams\,g on Aion (GWP100). The conventions behind
+these figures are a grid factor of \Grid\,gCO\textsubscript{2} per kWh, a PUE of
+\IrisPue\ for IRIS and \AionPue\ for Aion, and the node's manufacture charged by the time
+the run holds the node out of its allocated life. A reader who prefers other
+factors can recompute the footprint from the energy per run, \IrisEnergy\,kJ and
+\AionEnergy\,kJ at the counters, with the formula of Section~\ref{sec:lcia},
+without repeating any measurement.
+
+On both clusters the hotspot is the node's manufacture, with \IrisShareEmb\ of
+the IRIS figure and \AionShareEmb\ of Aion's; embodied and operational emissions
+stand at \IrisEmbOpRatio\ to 1 on IRIS and \AionEmbOpRatio\ to 1 on Aion. The
+node's electricity comes second, with \IrisShareNode\ and \AionShareNode. Both
+grow with the time a run holds the node. At the assumed PUEs, site overhead
+accounts for \IrisShareSite\ of the total on IRIS and \AionShareSite\ on Aion.
+
+% ---------------------------------------------------------------------
+\section{Optimisation}\label{sec:optimisation}
+
+\subsection{Optimisation procedure}\label{sec:optproc}
+
+The hotspot of Section~\ref{sec:reporting} is the node's manufacture, charged by
+the time a run holds the node, and the node's electricity comes second. A change
+can therefore lower the footprint in two ways: shorten the run, which lowers both
+terms, or lower the power drawn without lengthening the run by as much, which
+lowers the operational term only. HPCG's code and input stay as they are, and so
+do the 28 processes and the node held for the job alone; only what a cluster user
+controls changes: how the code is compiled, how fast the processors clock, and
+where on the node the processes run.
+
+\emph{Compiler flags.} HPCG's own build configuration, used for every run of
+Section~\ref{sec:lcia}, already compiles with \texttt{-O3}, the highest of GCC's
+standard optimisation levels, together with \texttt{-ffast-math} and automatic
+vectorisation~\cite{gcc-optimize} (Table~\ref{tab:frozen}). Adding
+\texttt{-O3} therefore changes nothing. To see what it contributes, the same
+build is measured at \texttt{-O2}. The one common flag the configuration leaves
+out is \texttt{-march=native}, which lets the compiler use every instruction of
+the processor that builds the code~\cite{gcc-x86}. Both were tested on Aion.
+
+\emph{Clock cap.} HPCG spends much of its time waiting for memory
+(Section~\ref{sec:interpretation}), so a processor that clocks lower may lose
+little speed while drawing less power. SLURM lets a job cap the clock of its
+own cores with the \texttt{-{}-cpu-freq} option of \texttt{srun}~\cite{slurm-srun}.
+On Aion, whose processors offer only 2.6, 2.0 and 1.5\,GHz steps, the caps tested
+are \AionCapA\ and \AionCapB\,GHz. On IRIS, whose cores otherwise run at about
+3.3\,GHz with their turbo boost (Table~\ref{tab:inventory}), the cap is
+\IrisCapA\,GHz, the processors' base clock, which switches the boost off.
+
+\emph{Placement.} An Aion node has eight memory domains of 16 cores, and each
+domain four groups of four cores that share a 16\,MB L3 cache. By default SLURM
+puts the job's three or four processes in each domain on the domain's first
+group, so they share one cache while three groups stay idle, as the job's record
+of each process's cores shows. The spread placement keeps every process in its
+domain but gives each its own group, and so its own cache. On IRIS the 28
+processes fill the node's 28 cores, and placement has nothing to change.
+
+\emph{Before and after.} The before is the 100 runs of the unchanged job in
+Section~\ref{sec:lcia}; the after is 100 runs of the changed job, with the same
+protocol, so that the two are measured the same way. On Aion, the change was
+chosen in short rounds on one node, each candidate alternating with the
+unchanged job in an order that rotated from round to round, so that a slow drift
+of the node favours none of them: \AionOptRounds\ rounds for the compiler flags
+and clock caps and \AionPlOptRounds\ for the placement, whose difference was
+clear from the first round. A change is kept only if HPCG validates every run,
+every run does at least the baseline's work, and the footprint is lower in every
+round. ``At least'': HPCG fixes its duration, not its work, so a configuration
+that runs faster may complete an extra set of iterations, which is extra work at
+no extra charge. On IRIS, the \IrisCapA\,GHz cap was chosen without such rounds.
+IRIS nodes differ widely, though: in this project's earlier, shorter
+measurements on \IrisNodeCount\ IRIS nodes, the same run emitted between
+\IrisNodeGramsMin\ and \IrisNodeGramsMax\,g, against \AionNodeGramsMin\ to
+\AionNodeGramsMax\,g on \AionNodeCount\ Aion nodes. Section~\ref{sec:lcia}'s IRIS
+node was not free in time, so the
+job first ran the unchanged and the capped job alternately \IrisOptRounds\ times
+on the node it was given, and the 100 capped runs are compared with the
+unchanged job on that node. The lecturer suggested the compiler flags; I asked
+for the 100 runs after optimisation, for the comparison to rest on them, for a
+change that lowers the emissions even if the run gets slower, and for the IRIS
+cap without a test. The AI coding agent proposed the \texttt{-O2} control, the
+clock caps and the placement, wrote the build variants, the job script and the
+script that applies the rule, and submitted and analysed the jobs; I accepted
+the levers and the rule for keeping a change.
+
+\subsection{Implementation}\label{sec:optimpl}
+
+Nothing in HPCG's source tree or in \texttt{hpcg.dat} changed. The compiler
+variants are passed to \texttt{make} on the command line, as \texttt{CXXFLAGS}
+with \texttt{-O2} in place of \texttt{-O3}, or with \texttt{-march=native}
+appended, and each is built from the same commit in its own folder at the start
+of the allocation. The clock cap is one option of the \texttt{srun} line that
+starts HPCG, \texttt{-{}-cpu-freq=<lowest>-<cap>:Performance}, with the
+performance governor that the clusters allow; the job records the limit under
+which each run actually ran. The placement is another option of the same line,
+\texttt{-{}-cpu-bind=map\_cpu:<cores>}, with \texttt{-{}-whole} so that the run may
+use any core of the node the job holds, and every run records the cores of its 28
+processes. A script applies the rule to the rounds' footprints, computed with the
+code that produces every figure of this paper. Two options were rejected. HPCG's build switch
+for contiguous matrix storage, \texttt{-DHPCG\_CONTIGUOUS\_ARRAYS}, selects
+different code paths in the source, which the brief rules out. Changing the
+problem size, the run time or the number of processes would change the
+functional unit.
+
+To check that the job still produces the same result, every run's report is
+read for HPCG's verdict, the number of conjugate-gradient iterations and the
+scaled residual. A configuration that HPCG does not validate, or that does less
+work, is no longer the same job.
+
+\subsection{Footprint after optimisation}\label{sec:afteropt}
+
+Table~\ref{tab:beforeafter} compares the 100 runs before and after optimisation;
+Table~\ref{tab:opt} gives the rounds that chose the change. Footprints in this
+section carry three digits so that the changes show; as absolute figures they
+are accurate to two, the precision of the factors (Section~\ref{sec:lcia}).
+\OptValidityText
+
+\emph{Compiler flags.} \OptFlagsPctText\ \OptFlagsText
+
+\emph{Clock cap.} \OptCapText
+
+\emph{Placement.} In a second allocation on Aion, with its own baseline:
+\OptPlacementText
+
+\emph{The result.} \OptResultText
+
+\subsection{What generalises}\label{sec:generalises}
+
+\emph{The method.} Any job can be examined in four steps, using only the
+cluster's own levers. (1)~Split the footprint of one run into its embodied and
+operational terms with the formula of Section~\ref{sec:lcia}. Where manufacture
+is half of it or more, as on both clusters here, a change that saves energy but
+lengthens the run can cost more than it saves. (2)~Choose the node type first:
+on the same job, moving from IRIS to Aion saved \AionSave, far more than any
+setting tried on one node. (3)~On that node type, try the levers that leave the
+code alone, in order of risk: compiler flags passed at build time, then the
+placement of the processes and a cap on the clock, both through the scheduler.
+(4)~Measure every candidate against the unchanged job in the same allocation,
+alternating them, and keep a change only if the program's own check still passes
+with at least the same work and if the total, not just the energy, goes down in
+every round; then measure the change kept with the full protocol.
+
+\emph{The tool.} Step~(1) is carried out by a script, \texttt{jobprint}, which
+needs nothing but a job's identifier. It reads the job's record from the
+scheduler, or a saved copy of it when no cluster is at hand, and prints for each
+step the time and energy, the footprint split into node, site and manufacture,
+the largest of the three, and the reserved cores and memory the job left idle.
+Its repository, with a \texttt{README} and a saved record to try it on, is
+\ProjectRepo.
+
+% ---------------------------------------------------------------------
+\section{Carbon Payback}\label{sec:payback}
+
+The cost of producing the optimisation has two parts. The first is the AI
+assistance: over the whole project, \AssistOut\ output tokens, \AssistGrams\,g
+CO\textsubscript{2}e at the course factor of 1.03\,Wh per 1\,000 output tokens
+and the grid factor of Section~\ref{sec:lcia}; the
+session that set up and measured the optimisation accounts for \AssistOptGrams\,g
+of it. The second is the cluster time spent testing the configurations and
+measuring the kept one: the \OptCampaignText\ emitted \OptCampaignGramsAll\,g
+with the factors of Section~\ref{sec:lcia}. The cost is therefore between \PaybackCostLo\,g, counting
+that session alone, and \PaybackCostHi\,g, counting all the assistance.
+
+The saving per run is the difference between the 100 runs after optimisation and
+the runs they are compared with in Section~\ref{sec:afteropt}, \OptSaveText.
+For an illustrative conversion to years, I counted other users' allocations
+with \texttt{hpcg} in the job or step name from October 2025 to October 2026.
+I assumed one comparable run per matching allocation and the same number of
+such allocations each year.
+\PaybackText
+
+\subsection{What this means}\label{sec:whatmeans}
+
+In answer to the research question: a run of HPCG emits \IrisGrams\,g
+CO\textsubscript{2}e on IRIS and \AionGrams\,g on Aion. The model attributes
+\GapShareSite\ of the difference to site overhead. Of the
+settings a user controls without touching the code, \OptBestText.
+
+Because manufacture is half of the footprint or more, what counts is how long a
+run holds the node. A lower clock acts only on the operational part,
+\IrisShareOp\ of a run on IRIS and \AionShareOp\ on Aion, and it lengthens the
+run, which charges more of the node's manufacture to it: on Aion the footprint
+fell at 2.0\,GHz but rose at 1.5\,GHz, where the runs that did the same work took
+longer still. Giving each process its own cache did the opposite: the same work
+finished sooner, so both terms fell, and the clock cap on top of it saved
+electricity while giving back only part of that time.
+
+\PaybackMeaningText\ Running this job on Aion with the original settings
+already reduced its footprint by \AionSave\ relative to IRIS.
+
+% ---------------------------------------------------------------------
+\section{Threats to Validity}\label{sec:threats}
+
+The following checks examine how uncertainty in the measurements and model
+assumptions affects the comparison.
+
+\emph{What the energy reading covers.} On IRIS the counters cover the processor
+packages and the memory, on Aion the packages only. Nothing meters the power
+supply, fans, board, network card or local disk, which leaves the operational
+term too low on both clusters. Worse, the missing fans skew the comparison.
+Air-cooled IRIS nodes need them and liquid-cooled Aion nodes largely do without,
+so leaving them out favours IRIS. Reserving the node keeps other jobs out of the reading, but the cores the
+job leaves idle are charged to it. That weighs more on Aion, whose nodes have
+many more cores than the job uses.
+
+\emph{Two machines, several differences.} IRIS and Aion differ in processor,
+memory, node design and cooling at once. The formula estimates a facility
+overhead for each system. The comparison cannot isolate the effect of cooling
+technology or separate the effect of processor choice from memory configuration. Cooling
+acts inside the node as well: a hotter chip leaks more current, and that part of
+the cooling's effect is counted as processor energy, outside the PUE. Intel and
+AMD implement the counters differently, and the two readings may not be equally
+accurate. Aion reports no memory energy, while IRIS's figure includes
+\IrisDram\,kJ of it per run: \IrisMemGrams\,g, or \IrisMemGapShare\ of the gap.
+On packages alone a run on IRIS would emit \IrisGramsPkgOnly\,g,
+\GapRatioPkgOnly\ times Aion's, so the order of the clusters does not depend on
+it.
+
+\emph{The declared PUE.} Of all the threats, this one bears most directly on the
+research question. Since no measured PUE is published for either room, IRIS's
+value comes from European figures for rooms of its size and Aion's from its
+operator's design target. With a PUE of \IrisPueLow\ or \IrisPueHigh, a run on
+IRIS would emit \IrisGramsPueLow\ or \IrisGramsPueHigh\,g. With \AionPueLow, the
+target taken literally, or \AionPueHigh, the European average for rooms of Aion's
+size~\cite{ec2025}, a run on Aion would emit \AionGramsPueLow\ or
+\AionGramsPueHigh\,g. Across these values the site overhead explains between
+\GapShareSiteMin\ and \GapShareSiteMax\ of the gap between the clusters: the
+part of the answer that concerns cooling rests on the PUE more than on any
+measurement. The
+European figure for small rooms comes partly from voluntary reports by more
+ambitious operators, which the assessment says may bias it low~\cite{ec2025};
+IRIS's true value may be higher. For that reason I also
+report the node alone, without any site overhead: \IrisGramsNoSite\,g on IRIS
+and \AionGramsNoSite\,g on Aion.
+
+\emph{The grid factor.} Both clusters draw on the same grid. ILR's figure rests on
+what the suppliers declare: it counts 52\,\% of the supply as hydropower bought
+under contract, and only the carbon dioxide of generation~\cite{ilr2026}. With
+Ember's life-cycle intensity of Luxembourg's own production, 123\,g per kWh, a
+run would emit \IrisGramsEmber\,g on IRIS and \AionGramsEmber\,g on Aion; with
+the EU-27 average of 209\,g~\cite{ries2026s2}, \IrisGramsEU\ and
+\AionGramsEU\,g. Ember counts upstream methane with a warming potential of 21, a
+value from an earlier IPCC report~\cite{ries2026s2}. A higher factor raises the operational terms only: at the
+European average, the node's electricity, not its manufacture, would be the
+hotspot on both clusters. The ratio between the clusters barely moves: a run on
+IRIS emits \GapRatio\ times as much as one on Aion at the declared factor, and
+\GapRatioEU\ times at the European average.
+
+\emph{Substitutes and completeness.} Dell's sheet for the IRIS node states a
+standard deviation of $\pm$6\,410\,kg on its 6\,510\,kg, assumes a four-year
+life and a configuration with 32\,GB of memory where IRIS nodes hold 128\,GB, and
+warns against its use in formal footprints~\cite{dell-c6420-pcf}. Applied to
+the manufacture term, that standard deviation alone is $\pm$\IrisEmbSdGrams\,g,
+about half of IRIS's total. The substitute
+for the Aion node models newer processors and four times its memory, so it
+probably overstates its manufacture. Nor are the figures equally complete. The
+embodied term covers manufacture, transport and end of life of the compute node.
+It excludes manufacture of switches, file servers and cooling equipment. Neither embodied
+source states which IPCC report its warming potentials follow. Most of these
+gaps make the total too low. The allocation adds its own uncertainty. Charging
+manufacture over the years in service so far charges a run the most it can
+carry: if IRIS's nodes stay in service for ten years, its manufacture term falls
+by an eighth. The allocated share is measured over the whole cluster, where many
+failed nodes of IRIS's older generation pull it down; the Skylake nodes alone
+are probably busier, which would lower their term further.
+
+\emph{The functional unit.} At a few minutes, the run is shorter and smaller
+than the HPCG rules require for an official result, and its figures hold for
+this configuration only. Running the same number of processes on both clusters
+keeps the job identical but leaves most of an Aion node idle, and a job sized to
+fill each node would compare the clusters differently. Each cluster was measured
+on one node; another node of the same model may run faster or slower, so the
+figures describe the node measured as much as the cluster.
+
+\emph{The optimisation.} On Aion, the 100 runs after optimisation ran on another
+node and day than the 100 runs before it, so their difference mixes the change
+with the difference between two nodes; Aion's nodes agree within a few per cent,
+and the test rounds, which compare the change with the unchanged job on one node,
+show how much of it is the change itself. On IRIS, whose nodes differ far more,
+the 100 capped runs are compared with \IrisCmpN\ unchanged runs on the same node,
+fewer than 100, so that comparison is less precise than the one on Aion. The scheduler caps the
+cores' clock, but the memory controller and caches set their own, which a job
+can neither see nor set; a cap may act differently on another processor.
+\texttt{-march=native} ties the binary to the processor that built it. A single
+allocation can contain many runs, as the 100-run baseline jobs illustrate, and
+jobs with other names can also launch HPCG. The accounting records therefore
+leave the actual annual number of comparable runs unknown.
+
+\emph{Burden shifting and the single criterion.} A carbon-only result hides
+whatever it does not count. Liquid cooling may change how much water a site
+uses: at the European averages for the two size classes, 0.193 and 0.413\,L per
+kWh of IT energy~\cite{ec2025}, a run consumes about \IrisWater\,mL of water on
+IRIS and \AionWater\,mL on Aion, although direct liquid cooling can need little
+water, so Aion's figure may be too high. Replacing an air-cooled cluster with a
+liquid-cooled one means new hardware to make and old hardware to dispose of. The
+results cover climate
+change only, for one job on two clusters at one site, and support no comparison
+with other jobs.
+
+% ---------------------------------------------------------------------
+% Unnumbered on purpose: a disclosure statement sits outside the argument.
+\section*{AI Usage Transparency}
+
+I used AI to analyse the architecture of the IRIS and Aion clusters, adapt the
+SLURM submission script, and interpret the logs from the HPCG runs. It also
+helped me extract information from the cited websites and apply findings from
+the literature to this job.
+
+% ---------------------------------------------------------------------
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+% ---------------------------------------------------------------------
+
+\appendices
+\section{Figures and Tables}\label{app:figures}
+
+\begin{table*}[!t]
+\caption{The job and the two machines it ran on}
+\label{tab:frozen}
+\centering
+\footnotesize
+\begin{tabular}{@{}R{0.12\textwidth}R{0.41\textwidth}R{0.41\textwidth}@{}}
+\toprule
+ & IRIS & Aion \\
+\midrule
+Code & \multicolumn{2}{>{\raggedright\arraybackslash}p{0.83\textwidth}}{HPCG 3.1,
+\url{https://github.com/hpcg-benchmark/hpcg}~\cite{hpcg-repo}, commit
+\texttt{114602d458d1034faa52b71e4c15aba9b3a17698} of 2023-09-23, reference
+kernels, unmodified} \\
+Build & \multicolumn{2}{>{\raggedright\arraybackslash}p{0.83\textwidth}}{HPCG's
+\texttt{MPI\_GCC\_OMP} setup: \texttt{mpicxx -O3 -ffast-math -ftree-vectorize
+-fopenmp}; GCC 13.2.0 and Open MPI 4.1.6, built inside each allocation} \\
+Input & \multicolumn{2}{>{\raggedright\arraybackslash}p{0.83\textwidth}}{\texttt{hpcg.dat}, 84 bytes, SHA-256
+\texttt{8a18c3bde4485866bb24d3290da206003a4690112f2b01d6e77d9a3f7913376b}; line 3
+\texttt{104 104 104} (grid points per process), line 4 \texttt{60} (target
+seconds of the timed phase)} \\
+Job & \multicolumn{2}{>{\raggedright\arraybackslash}p{0.83\textwidth}}{28 MPI processes of one thread on one
+exclusive node, bound to cores; 100 runs back to back in one allocation per
+cluster, October 2026} \\
+Partition & \texttt{batch}, Skylake nodes & \texttt{batch} \\
+Node & Dell PowerEdge C6420 & one of the three nodes of an Atos BullSequana X2410
+blade \\
+Processors & 2 $\times$ Intel Xeon Gold 6132: 14 cores, 2.6\,GHz, 140\,W & 2
+$\times$ AMD EPYC 7H12: 64 cores, 2.6\,GHz, 280\,W \\
+Memory & 128\,GB DDR4-2400, 4 of 6 channels per processor, peak 154\,GB/s &
+256\,GB DDR4-3200, all 8 channels per processor, peak 410\,GB/s \\
+Cooling, room & air, in-row units; 300\,kW room & direct liquid, hot-water loop;
+1\,050\,kW room \\
+In service & Skylake nodes since December 2017 & since late 2021 \\
+Energy read & RAPL counters: packages and memory & RAPL counters: packages only \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\textwidth}{\footnotesize Hardware, rooms and dates from the ULHPC
+documentation~\cite{ulhpc-iris,ulhpc-aion,ulhpc-dc}; versions and checksum from
+the job logs. Peak memory bandwidth = channels $\times$ transfer rate $\times$
+8 bytes.}
+\end{table*}
+
+\begin{table}[!t]
+\caption{Declared factors}
+\label{tab:factors}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}R{0.36\columnwidth}R{0.25\columnwidth}R{0.33\columnwidth}@{}}
+\toprule
+Factor & Value & Source, basis \\
+\midrule
+Grid intensity & \Grid\,gCO\textsubscript{2}/kWh & ILR, supply to final customers, 2025, CO\textsubscript{2} only~\cite{ilr2026} \\
+PUE, IRIS & \IrisPue & EU, 100--500\,kW class~\cite{ec2025} \\
+PUE, Aion & \AionPue & assumption: the operator's target for its liquid cooling, ``very close to 1''~\cite{ulhpc-aion} \\
+Node manufacture, IRIS & \IrisEmbKg\,kg CO\textsubscript{2}e & Dell sheet, share outside use~\cite{dell-c6420-pcf} \\
+Node manufacture, Aion & \AionEmbKg\,kg CO\textsubscript{2}e & modelled AMD node, substitute~\cite{wadenstein2025} \\
+Allocated life, IRIS & \IrisLife\,y $\times$ \IrisAlloc\ = \IrisTalloc\,y & ULHPC timeline; \texttt{sreport} \\
+Allocated life, Aion & \AionLife\,y $\times$ \AionAlloc\ = \AionTalloc\,y & ULHPC timeline; \texttt{sreport} \\
+AI assistance & 1.03\,Wh per 1\,000 output tokens & course factor \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\columnwidth}{\footnotesize Read 29 September and 23 October 2026.
+Comparators: 5\,W LED at the grid factor, 291\,g per km in a small petrol car,
+28\,kg per Luxembourg resident per day~\cite{ries2026s2}.}
+\end{table}
+
+\begin{table*}[!t]
+\caption{Mean per run over the 100 runs on each cluster}
+\label{tab:runs}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrlrrrrrrr@{}}
+\toprule
+Cluster & Runs & Time & Energy & Packages + memory & Power & Rating & Timed work &
+\multicolumn{4}{c}{gCO\textsubscript{2}e per run} \\
+\cmidrule(l){9-12}
+ & & (s) & (kJ) & (kJ) & (W) & (GFLOP/s) & (GFLOP) & node & site & manufacture & total \\
+\midrule
+\RunsTableRows
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\textwidth}{\footnotesize Every value is the mean of the 100 runs on one
+node of each cluster. The footprint of a single run has a standard deviation of
+\IrisGramsSd\,g on IRIS and \AionGramsSd\,g on Aion, and ranges from
+\IrisGramsRunMin\ to \IrisGramsRunMax\,g and from \AionGramsRunMin\ to
+\AionGramsRunMax\,g. Energy: RAPL counters read between runs. Timed work: the
+floating-point operations of HPCG's timed phase, 100 CG iterations per run on
+IRIS and 200 on Aion. Grams with the factors of Table~\ref{tab:factors}.}
+\end{table*}
+
+\begin{table}[!t]
+\caption{Mean footprint of a run, over 100 runs per cluster}
+\label{tab:footprint}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+gCO\textsubscript{2}e per run & IRIS & Aion \\
+\midrule
+Node electricity & \IrisGNode\ (\IrisShareNode) & \AionGNode\ (\AionShareNode) \\
+Site overhead (PUE) & \IrisGSite\ (\IrisShareSite) & \AionGSite\ (\AionShareSite) \\
+Node manufacture & \IrisGEmb\ (\IrisShareEmb) & \AionGEmb\ (\AionShareEmb) \\
+\midrule
+Total & \IrisGrams & \AionGrams \\
+Standard deviation & \IrisGramsSd & \AionGramsSd \\
+Embodied : operational & \IrisEmbOpRatio\ : 1 & \AionEmbOpRatio\ : 1 \\
+\midrule
+Hours of a 5\,W LED & \IrisLedHours & \AionLedHours \\
+Metres in a small petrol car & \IrisCarMetres & \AionCarMetres \\
+Share of a resident's day & \IrisResidentShare & \AionResidentShare \\
+\midrule
+At 123\,g/kWh (Ember, LU) & \IrisGramsEmber & \AionGramsEmber \\
+At 209\,g/kWh (EU-27) & \IrisGramsEU & \AionGramsEU \\
+\quad embodied : operational & \IrisEmbOpRatioEU\ : 1 & \AionEmbOpRatioEU\ : 1 \\
+At PUE \IrisPueLow\ / \IrisPueHigh\ (IRIS) & \IrisGramsPueLow\ / \IrisGramsPueHigh & \\
+At PUE \AionPueLow\ / \AionPueHigh\ (Aion) & & \AionGramsPueLow\ / \AionGramsPueHigh \\
+Node alone, no site overhead & \IrisGramsNoSite & \AionGramsNoSite \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\columnwidth}{\footnotesize \IrisRuns\ runs on IRIS, \AionRuns\ on Aion.
+Shares of the total in brackets. Operational = node electricity + site overhead.}
+\end{table}
+
+\begin{table}[!t]
+\caption{Other measured quantities: mean per run over the 100 runs}
+\label{tab:inventory}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}R{0.46\columnwidth}R{0.24\columnwidth}R{0.24\columnwidth}@{}}
+\toprule
+Quantity per run & IRIS & Aion \\
+\midrule
+Cores held / used & 28 / 28 & 128 / 28 \\
+\OtherMeansRows
+Memory reserved (GiB) & 112 & 219 \\
+Data between compute nodes & none, one node & none, one node \\
+Saved HPCG output (kB/run) & \IrisOutputKB & \AionOutputKB \\
+Water, declared & \IrisWater\,mL & \AionWater\,mL \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\columnwidth}{\footnotesize Means of the 100 runs on each cluster, the
+node sampled every 2\,s. Power: packages and memory on IRIS, packages only on
+Aion; idle power over 60\,s before and after the runs. Water: litres per kWh of IT
+energy for each room's size class, 0.193 and 0.413~\cite{ec2025}.}
+\end{table}
+
+\begin{table}[!t]
+\caption{Utilisation of the two clusters over twelve months}
+\label{tab:util}
+\centering
+\footnotesize
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Share of capacity & IRIS & Aion \\
+\midrule
+Allocated, to jobs or reservations & 32.94\,\% & 54.37\,\% \\
+Idle & 29.06\,\% & 35.86\,\% \\
+Down & 19.09\,\% & 2.67\,\% \\
+Planned & 16.50\,\% & 5.64\,\% \\
+Planned down & 2.41\,\% & 1.47\,\% \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\columnwidth}{\footnotesize \texttt{sreport cluster utilization},
+2025-09-29 to 2026-09-28, whole clusters. Many of IRIS's older nodes had failed,
+so its share probably understates the Skylake nodes' own.}
+\end{table}
+
+\begin{table*}[!t]
+\caption{Before and after optimisation: the unchanged job and the change kept, mean per run}
+\label{tab:beforeafter}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llrrrrrrrrrr@{}}
+\toprule
+Cluster & Version & Runs & Time & Energy & Power & Rating & Iterations &
+\multicolumn{4}{c}{gCO\textsubscript{2}e per run} \\
+\cmidrule(l){9-12}
+ & & & (s) & (kJ) & (W) & (GFLOP/s) & & operational & manufacture & total & change \\
+\midrule
+\BeforeAfterRows
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\textwidth}{\footnotesize Same code, input, 28 processes, node held for
+the job alone, protocol and factors as Table~\ref{tab:runs}. Change: against the
+100 runs of Section~\ref{sec:lcia} on Aion, and against the unchanged runs on the
+same node on IRIS, whose nodes differ widely (Section~\ref{sec:optproc}).\OptLeftOutNote\ Spread:
+one process per L3 cache. HPCG validated every run. gCO\textsubscript{2}e to
+three digits so that the change shows; accurate to two (Section~\ref{sec:lcia}).}
+\end{table*}
+
+\begin{table*}[!t]
+\caption{The rounds that chose the change: every configuration against the unchanged job on the same node}
+\label{tab:opt}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llrrrrrrrrrr@{}}
+\toprule
+Cluster & Configuration & Runs & Clock & Time & Energy & Power & Rating &
+\multicolumn{4}{c}{gCO\textsubscript{2}e per run} \\
+\cmidrule(l){9-12}
+ & & & (GHz) & (s) & (kJ) & (W) & (GFLOP/s) & operational & manufacture & total & change \\
+\midrule
+\OptTableRows
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\textwidth}{\footnotesize Means over the rounds of one allocation, on one
+node, each round running every configuration once in a rotating order. Unchanged:
+HPCG's own build (\texttt{-O3}) at the default clock and placement, as in
+Section~\ref{sec:lci}. Clock: mean over all the node's cores, sampled every
+2\,s; on Aion it averages the 28 cores that run HPCG with the 100 idle ones, so
+it stays above the cap, which the job recorded on the cores. Same code, input, 28
+processes and factors as Table~\ref{tab:runs}; change relative to the unchanged
+job of the same allocation. (1), (2): Aion's two allocations; the second stopped
+after two rounds, once the result was clear. Spread: one process per L3 cache
+(Section~\ref{sec:optproc}); with the cap, it applied to all the node's cores.
+On IRIS, the cap was chosen beforehand, and its rounds give the unchanged job on
+the node of the 100 capped runs.\OptLeftOutNote\ HPCG validated every run; ``it.'': a
+configuration whose runs did different numbers of iterations is split by that
+number (Section~\ref{sec:afteropt}). gCO\textsubscript{2}e to three digits,
+accurate to two.}
+\end{table*}
+
+\clearpage
+\section{AI Usage Journal}\label{app:journal}
+
+I used AI to help me read the technical documentation for IRIS and Aion and
+understand how the differences between their nodes affect this particular HPCG
+job. One question was what it meant to request 28 cores on each machine. On an
+IRIS node, the 28 processes occupy all the cores across its two Intel processors.
+On an Aion node, those same processes occupy 28 of the 128 cores across its two
+AMD processors. AI helped me interpret the specifications for memory channels
+and shared caches in the cluster documentation~\cite{ulhpc-iris,ulhpc-aion}.
+These details matter for HPCG because its
+performance depends on how quickly each process can access the data it needs.
+I also used AI to adapt the SLURM submission script to the two clusters. This
+included understanding how the script requests an entire node, assigns one
+thread to each MPI process and binds processes to cores. The script gives
+each run its own directory and copies the same input file into it, so I could
+trace a benchmark report back to the run that produced it. Keeping the input and
+process count the same gave me a consistent basis for comparing the runs.
+Reserving the node for the job also meant that another user's workload would
+not contribute to the energy readings. Once the jobs had finished, I used AI
+to help me read the scheduler logs, the energy records and the reports produced
+by HPCG. Each source answered a different question about a run. The job record
+identified the node and allocation, the counter readings taken before and after
+the run gave the energy consumed by the components being monitored, and the
+benchmark report recorded the work completed and the performance achieved.
+Reading them together helped me relate a difference in elapsed time to the
+work done. It also helped me interpret a gap in the energy data. IRIS reports
+energy for both the processor packages and memory. Aion reports package energy
+only, so memory consumption on Aion is an unknown in the comparison. I also
+used AI to help extract information from the cited websites and reports and
+work out which published values applied to this job. For the electricity
+calculation, the Luxembourg regulator reports a factor for electricity supplied
+to customers, including imports~\cite{ilr2026}. That figure applies to the
+electricity used while the job runs. Dell's product footprint covers a server's
+whole life~\cite{dell-c6420-pcf}. Using its full value would count the use phase twice, so the
+calculation uses the share outside that phase and allocates a fraction to the
+time the job occupied the node.
+
+\end{document}

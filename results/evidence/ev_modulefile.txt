@@ -1,0 +1,42 @@
+# foss/2023b toolchain modulefile, skylake tree
+# read on 2026-09-29T13:34:45+02:00 from access1 by: cat .../2023b/skylake/modules/all/toolchain/foss/2023b.lua
+
+help([==[
+
+Description
+===========
+GNU Compiler Collection (GCC) based compiler toolchain, including
+ OpenMPI for MPI support, OpenBLAS (BLAS and LAPACK support), FFTW and ScaLAPACK.
+
+
+More information
+================
+ - Homepage: https://easybuild.readthedocs.io/en/master/Common-toolchains.html#foss-toolchain
+]==])
+
+whatis([==[Description: GNU Compiler Collection (GCC) based compiler toolchain, including
+ OpenMPI for MPI support, OpenBLAS (BLAS and LAPACK support), FFTW and ScaLAPACK.]==])
+whatis([==[Homepage: https://easybuild.readthedocs.io/en/master/Common-toolchains.html#foss-toolchain]==])
+whatis([==[URL: https://easybuild.readthedocs.io/en/master/Common-toolchains.html#foss-toolchain]==])
+
+local root = "/opt/apps/easybuild/systems/iris/rhel810-20250803/2023b/skylake/software/foss/2023b"
+
+conflict("toolchain/foss")
+
+depends_on("compiler/GCC/13.2.0")
+
+depends_on("mpi/OpenMPI/4.1.6-GCC-13.2.0")
+
+depends_on("lib/FlexiBLAS/3.3.1-GCC-13.2.0")
+
+depends_on("numlib/FFTW/3.3.10-GCC-13.2.0")
+
+depends_on("numlib/FFTW.MPI/3.3.10-gompi-2023b")
+
+depends_on("numlib/ScaLAPACK/2.2.0-gompi-2023b-fb")
+
+setenv("EBROOTFOSS", root)
+setenv("EBVERSIONFOSS", "2023b")
+setenv("EBDEVELFOSS", pathJoin(root, "easybuild", "toolchain-foss-2023b-easybuild-devel"))
+
+-- Built with EasyBuild version 5.1.1

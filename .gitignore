@@ -1,0 +1,29 @@
+# This repository holds only the experiments (scripts and their logs), the
+# tool and the final paper. Everything else in the folder stays out, so a
+# file added later is ignored unless it is listed here.
+/*
+!/.gitignore
+!/README.md
+!/LICENSE
+!/scripts/
+!/results/
+!/tool/
+!/paper/
+
+# the final paper only: its source, generated numbers and tables,
+# bibliography, build settings and PDF
+/paper/*
+!/paper/latexmkrc
+!/paper/src/
+!/paper/pdf/
+/paper/src/*
+!/paper/src/short-paper-hpc-v1.tex
+!/paper/src/v1-numbers.tex
+!/paper/src/v1-tables.tex
+!/paper/src/refs.bib
+/paper/pdf/*
+!/paper/pdf/short-paper-hpc-v1.pdf
+
+# Python
+__pycache__/
+*.pyc

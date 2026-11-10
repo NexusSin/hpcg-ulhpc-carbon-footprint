@@ -1,0 +1,38 @@
+node: iris-167  class=regular-skylake  start=2026-09-24T11:51:53+02:00
+package domains: 2   dram domains: 2
+
+=== A. IDLE (30 s) ===
+  idle   t=  0s  package   77.5 W   dram  11.1 W   total   88.6 W
+  idle   t= 10s  package   77.3 W   dram  11.1 W   total   88.4 W
+  idle   t= 20s  package   78.5 W   dram  11.1 W   total   89.6 W
+xhpcg links cleanly
+
+=== B. UNDER LOAD - full run, sampled every 10 s ===
+    (setup+validation run first; the scored CG phase is the middle stretch)
+  load   t=  0s  package  235.2 W   dram  19.6 W   total  254.8 W
+  load   t= 10s  package  236.2 W   dram  24.8 W   total  261.0 W
+  load   t= 20s  package  236.0 W   dram  25.0 W   total  261.0 W
+  load   t= 30s  package  238.6 W   dram  24.9 W   total  263.5 W
+  load   t= 40s  package  240.2 W   dram  24.8 W   total  265.0 W
+  load   t= 50s  package  238.6 W   dram  25.2 W   total  263.8 W
+  load   t= 60s  package -25973.5 W   dram  25.1 W   total -25948.4 W
+  load   t= 70s  package  239.7 W   dram  25.1 W   total  264.8 W
+  load   t= 80s  package  245.9 W   dram  24.9 W   total  270.8 W
+  load   t= 90s  package -25972.5 W   dram  25.1 W   total -25947.4 W
+  load   t=100s  package  248.5 W   dram  24.7 W   total  273.2 W
+  load   t=110s  package  244.1 W   dram  25.1 W   total  269.2 W
+  load   t=120s  package  245.6 W   dram  25.1 W   total  270.7 W
+  load   t=130s  package  244.8 W   dram  25.1 W   total  269.9 W
+  load   t=140s  package  248.1 W   dram  24.9 W   total  273.0 W
+  load   t=150s  package  247.2 W   dram  25.0 W   total  272.2 W
+  load   t=160s  package  246.6 W   dram  24.9 W   total  271.5 W
+  load   t=170s  package  243.8 W   dram  25.1 W   total  268.9 W
+  srun exit=0
+
+=== C. IDLE again (20 s) ===
+  idle2  t=  0s  package   84.2 W   dram  11.0 W   total   95.2 W
+  idle2  t= 10s  package   82.9 W   dram  11.0 W   total   93.9 W
+
+=== HPCG result ===
+Final Summary::HPCG result is VALID with a GFLOP/s rating of=11.4098
+=== done: 2026-09-24T11:56:38+02:00 ===

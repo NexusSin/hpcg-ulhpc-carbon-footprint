@@ -1,0 +1,12 @@
+# Rounds of this allocation left out of every comparison by scripts/v1_numbers.py,
+# counting from 1; their runs still count in the campaign's cost.
+#
+# Round 1: its unchanged run took 245 s and HPCG rated it 10.9 GFLOP/s, against
+# 213-215 s and 12.4-12.5 GFLOP/s for the other nine unchanged runs on this node,
+# and the capped run of the same round took 225 s against 217-220 s. Clock and CPU
+# use matched the other runs; nothing the job recorded explains the slowdown.
+# Section III's first run on IRIS was normal (215 s). Decided by the author on
+# 2026-11-09, after the rounds and before the 100 capped runs had finished.
+# Leaving it out lowers the reported saving: 9.6 % to 8.6 % on the first 60
+# capped runs, when it was decided; 9.8 % to 8.7 % on all 100 (final).
+1

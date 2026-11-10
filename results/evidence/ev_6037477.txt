@@ -1,0 +1,8 @@
+# SLURM accounting, pilot job (energy counter check)
+# read on 2026-09-29T13:34:45+02:00 from access1 by: sacct -j 6037477
+
+JobID|JobName|State|Start|End|ElapsedRaw|ConsumedEnergyRaw|NodeList|Constraints|SubmitLine
+6037477|hpcg-frozen|COMPLETED|2026-09-24T11:06:10|2026-09-24T11:09:02|172|51064|iris-109|skylake|sbatch scripts/hpcg_frozen.sbatch
+6037477.batch|batch|COMPLETED|2026-09-24T11:06:10|2026-09-24T11:09:02|172|51056|iris-109||
+6037477.extern|extern|COMPLETED|2026-09-24T11:06:10|2026-09-24T11:09:02|172|51064|iris-109||
+6037477.0|xhpcg|COMPLETED|2026-09-24T11:06:14|2026-09-24T11:09:02|168|50395|iris-109||srun --cpu-bind=cores ./xhpcg

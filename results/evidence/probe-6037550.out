@@ -1,0 +1,30 @@
+node: iris-167  class=regular-skylake  date=2026-09-24T11:47:46+02:00
+
+=== 1. RAPL domains visible on the compute node ===
+  intel-rapl:0  name=package-0  READABLE (243716778244 uJ)
+  intel-rapl:0:0  name=dram  READABLE (46037285997 uJ)
+  intel-rapl:1  name=package-1  READABLE (239013768982 uJ)
+  intel-rapl:1:0  name=dram  READABLE (49859777210 uJ)
+
+=== 2. BMC / IPMI node power ===
+  ipmitool present
+Could not open device at /dev/ipmi0 or /dev/ipmi/0 or /dev/ipmidev/0: No such file or directory
+  dcmi failed
+Could not open device at /dev/ipmi0 or /dev/ipmi/0 or /dev/ipmidev/0: No such file or directory
+  sdr failed
+
+=== 3. hwmon power sensors ===
+  none
+
+=== 4. what SLURM's plugin reports ===
+AcctGatherEnergyType    = acct_gather_energy/rapl
+AcctGatherNodeFreq      = 0 sec
+
+=== 5. package power, idle (30 s) ===
+  idle package power: 77.6 W
+
+=== 6. package power under HPCG load ===
+  loaded package power: 77.6 W
+  idle 77.6 W -> loaded 77.6 W
+
+=== done: 2026-09-24T11:49:32+02:00 ===

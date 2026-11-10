@@ -1,0 +1,11 @@
+# proc_pid_io(5), Linux man-pages, read locally 2026-09-29 (man 5 proc_pid_io)
+
+	      rchar: characters read
+		     The  number  of  bytes  returned by successful read(2) and
+		     similar system calls.
+
+	      wchar: characters written
+		     The number of bytes returned by  successful  write(2)  and
+		     similar system calls.
+
+	      syscr: read syscalls

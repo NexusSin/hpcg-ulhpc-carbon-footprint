@@ -1,0 +1,36 @@
+# module list inside a job, as Session 4 asks ("module list while the job's environment is still open")
+# read on 2026-09-29 by: srun -p interactive --qos debug -C skylake -N1 -n1 -c1 -t 0:02:00 bash -lc
+#   "module purge; module load env/release/2023b toolchain/foss/2023b; module list; mpirun --version; mpicxx --version"
+# NOTE: the debug job landed on iris-185, a GPU node of the Skylake generation, so this list was resolved
+# from the gpu-arch module tree. The skylake-arch modulefile for toolchain/foss/2023b (ev_modulefile.txt)
+# declares the same versions: GCC 13.2.0, OpenMPI 4.1.6-GCC-13.2.0, FlexiBLAS 3.3.1, FFTW 3.3.10,
+# FFTW.MPI 3.3.10, ScaLAPACK 2.2.0. The measurement job itself logged g++ (GCC) 13.2.0.
+
+Currently Loaded Modules:
+  1) env/release/2023b                       (S)
+  2) compiler/GCCcore/13.2.0
+  3) lib/zlib/1.2.13-GCCcore-13.2.0
+  4) tools/binutils/2.40-GCCcore-13.2.0
+  5) compiler/GCC/13.2.0
+  6) tools/numactl/2.0.16-GCCcore-13.2.0
+  7) tools/XZ/5.4.4-GCCcore-13.2.0
+  8) lib/libxml2/2.11.5-GCCcore-13.2.0
+  9) system/libpciaccess/0.17-GCCcore-13.2.0
+ 10) system/hwloc/2.9.2-GCCcore-13.2.0
+ 11) system/OpenSSL/1.1
+ 12) lib/libevent/2.1.12-GCCcore-13.2.0
+ 13) lib/UCX/1.15.0-GCCcore-13.2.0
+ 14) lib/libfabric/1.19.0-GCCcore-13.2.0
+ 15) lib/PMIx/4.2.6-GCCcore-13.2.0
+ 16) lib/UCC/1.2.0-GCCcore-13.2.0
+ 17) mpi/OpenMPI/4.1.6-GCC-13.2.0
+ 18) numlib/OpenBLAS/0.3.24-GCC-13.2.0
+ 19) lib/FlexiBLAS/3.3.1-GCC-13.2.0
+ 20) numlib/FFTW/3.3.10-GCC-13.2.0
+ 21) toolchain/gompi/2023b
+ 22) numlib/FFTW.MPI/3.3.10-gompi-2023b
+ 23) numlib/ScaLAPACK/2.2.0-gompi-2023b-fb
+ 24) toolchain/foss/2023b
+
+mpirun (Open MPI) 4.1.6
+g++ (GCC) 13.2.0

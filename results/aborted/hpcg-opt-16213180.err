@@ -1,0 +1,23 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) env/release/default
+
+The following have been reloaded with a version change:
+  1) env/release/default => env/release/2023b
+
+srun: error: CPU binding outside of job step allocation, allocated CPUs are: 0x0007000700070007000F000F000F000F.
+srun: error: Task launch for StepId=16213180.2 failed on node aion-0273: Unable to satisfy cpu bind request
+srun: error: Application launch failed: Unable to satisfy cpu bind request
+srun: Job step aborted
+/var/spool/slurmd/job16213180/slurm_script: line 156: step-maxfreq.txt: No such file or directory
+srun: error: CPU binding outside of job step allocation, allocated CPUs are: 0x003800380038003800F000F000F000F0.
+srun: error: Task launch for StepId=16213180.3 failed on node aion-0273: Unable to satisfy cpu bind request
+srun: error: Application launch failed: Unable to satisfy cpu bind request
+srun: Job step aborted
+/var/spool/slurmd/job16213180/slurm_script: line 156: step-maxfreq.txt: No such file or directory
+srun: got SIGCONT
+[2026-11-09T13:09:01.091] error: *** STEP 16213180.4 ON aion-0273 CANCELLED AT 2026-11-09T13:09:01 DUE to SIGNAL Terminated ***
+[2026-11-09T13:09:01.092] error: *** JOB 16213180 ON aion-0273 CANCELLED AT 2026-11-09T13:09:01 DUE to SIGNAL Terminated ***
+srun: forcing job termination
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.

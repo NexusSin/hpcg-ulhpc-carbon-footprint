@@ -1,0 +1,9 @@
+# Jobs and job steps whose name contains "hpcg", 2025-10-01 to 2026-10-01, all users,
+# counted with: sacct -a -n -P -S <start> -E <end> -o JobID,JobName,User
+# (aggregated with awk; no user names or job IDs kept).
+# IRIS: counted on 2026-10-27 in one query. Aion's accounting database refused
+# connections that day; Aion was counted on 2026-11-09 in twelve monthly queries
+# (2025-10-01 to 2026-10-01), a record returned for two months counted once;
+# records_scanned counts every line returned.
+iris: records_scanned=2756378 other_users_records=22 other_users_jobs=7 other_users=1 own_records=5 own_jobs=5
+aion: records_scanned=8614480 other_users_records=23 other_users_jobs=3 other_users=1 own_records=3 own_jobs=3

@@ -1,0 +1,51 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) env/release/default
+
+The following have been reloaded with a version change:
+  1) env/release/default => env/release/2023b
+
+cpu-bind=MASK - aion-0216, task  0  0 [248012]: mask 0x1 set
+cpu-bind=MASK - aion-0216, task  1  1 [248013]: mask 0x2 set
+cpu-bind=MASK - aion-0216, task  2  2 [248014]: mask 0x4 set
+cpu-bind=MASK - aion-0216, task  3  3 [248015]: mask 0x8 set
+cpu-bind=MASK - aion-0216, task  4  4 [248016]: mask 0x10000 set
+cpu-bind=MASK - aion-0216, task  5  5 [248017]: mask 0x20000 set
+cpu-bind=MASK - aion-0216, task  6  6 [248018]: mask 0x40000 set
+cpu-bind=MASK - aion-0216, task  7  7 [248019]: mask 0x80000 set
+cpu-bind=MASK - aion-0216, task  8  8 [248020]: mask 0x100000000 set
+cpu-bind=MASK - aion-0216, task  9  9 [248021]: mask 0x200000000 set
+cpu-bind=MASK - aion-0216, task 10 10 [248022]: mask 0x400000000 set
+cpu-bind=MASK - aion-0216, task 11 11 [248023]: mask 0x800000000 set
+cpu-bind=MASK - aion-0216, task 12 12 [248024]: mask 0x1000000000000 set
+cpu-bind=MASK - aion-0216, task 13 13 [248025]: mask 0x2000000000000 set
+cpu-bind=MASK - aion-0216, task 14 14 [248026]: mask 0x4000000000000 set
+cpu-bind=MASK - aion-0216, task 15 15 [248027]: mask 0x8000000000000 set
+cpu-bind=MASK - aion-0216, task 16 16 [248028]: mask 0x10000000000000000 set
+cpu-bind=MASK - aion-0216, task 17 17 [248029]: mask 0x20000000000000000 set
+cpu-bind=MASK - aion-0216, task 18 18 [248030]: mask 0x40000000000000000 set
+cpu-bind=MASK - aion-0216, task 19 19 [248031]: mask 0x100000000000000000000 set
+cpu-bind=MASK - aion-0216, task 20 20 [248032]: mask 0x200000000000000000000 set
+cpu-bind=MASK - aion-0216, task 21 21 [248033]: mask 0x400000000000000000000 set
+cpu-bind=MASK - aion-0216, task 22 22 [248034]: mask 0x1000000000000000000000000 set
+cpu-bind=MASK - aion-0216, task 23 23 [248035]: mask 0x2000000000000000000000000 set
+cpu-bind=MASK - aion-0216, task 24 24 [248036]: mask 0x4000000000000000000000000 set
+cpu-bind=MASK - aion-0216, task 25 25 [248037]: mask 0x10000000000000000000000000000 set
+cpu-bind=MASK - aion-0216, task 26 26 [248038]: mask 0x20000000000000000000000000000 set
+cpu-bind=MASK - aion-0216, task 27 27 [248039]: mask 0x40000000000000000000000000000 set
+Traceback (most recent call last):
+  File "/home/users/fdollaku/green_it/scripts/nodemeter.py", line 123, in <module>
+    main()
+  File "/home/users/fdollaku/green_it/scripts/nodemeter.py", line 108, in main
+    with open(out, 'a') as f:
+OSError: [Errno 29] Illegal seek
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib64/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib64/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib64/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

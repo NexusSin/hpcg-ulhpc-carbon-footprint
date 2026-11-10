@@ -1,0 +1,34 @@
+# Node model, DIMM layout and /opt/apps mount, one Skylake node (IRIS batch) and one Aion batch node
+# read 2026-09-29 by srun (1 core, 1 min) from access1; node names deliberately not recorded
+
+## IRIS, -C skylake
+read 2026-09-29T21:17:12+02:00
+sys_vendor: Dell Inc.
+product_name: PowerEdge C6420
+product_version: 
+board_vendor: Dell Inc.
+board_name: 0K2TT6
+--- EDAC DIMMs (label, size MB, type)
+mc0/dimm0 | CPU_SrcID#0_MC#0_Chan#0_DIMM#0 | 16384 MB | Unbuffered-DDR4
+mc0/dimm2 | CPU_SrcID#0_MC#0_Chan#1_DIMM#0 | 16384 MB | Unbuffered-DDR4
+mc0/dimm4 | CPU_SrcID#0_MC#0_Chan#2_DIMM#0 | 16384 MB | Unbuffered-DDR4
+mc1/dimm0 | CPU_SrcID#0_MC#1_Chan#0_DIMM#0 | 16384 MB | Unbuffered-DDR4
+mc2/dimm0 | CPU_SrcID#1_MC#0_Chan#0_DIMM#0 | 16384 MB | Unbuffered-DDR4
+mc2/dimm2 | CPU_SrcID#1_MC#0_Chan#1_DIMM#0 | 16384 MB | Unbuffered-DDR4
+mc2/dimm4 | CPU_SrcID#1_MC#0_Chan#2_DIMM#0 | 16384 MB | Unbuffered-DDR4
+mc3/dimm0 | CPU_SrcID#1_MC#1_Chan#0_DIMM#0 | 16384 MB | Unbuffered-DDR4
+--- /opt/apps
+aiongpfs       gpfs 3227164606464 1720870158336 1506294448128  54% /mnt/aiongpfs
+/mnt/aiongpfs/apps
+
+## Aion
+read 2026-09-29T21:17:37+02:00
+sys_vendor: To be filled by O.E.M.
+product_name: To be filled by O.E.M.
+product_version: To be filled by O.E.M.
+board_vendor: GIGABYTE
+board_name: CER
+--- EDAC DIMMs (label, size MB, type)
+--- /opt/apps
+aiongpfs       gpfs 3227164606464 1720863162368 1506301444096  54% /mnt/aiongpfs
+/mnt/aiongpfs/apps

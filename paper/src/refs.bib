@@ -1,0 +1,208 @@
+@standard{iso14040,
+  organization = {International Organization for Standardization},
+  title        = {{ISO} 14040:2006, Environmental management---\allowbreak Life cycle assessment---\allowbreak Principles and framework},
+  address      = {Geneva, Switzerland},
+  year         = {2006},
+  url          = {https://www.iso.org/standard/37456.html},
+  note         = {Second edition; amended by Amd~1:2020. Checked 2026-10-23}
+}
+
+@standard{iso14044,
+  organization = {International Organization for Standardization},
+  title        = {{ISO} 14044:2006, Environmental management---\allowbreak Life cycle assessment---\allowbreak Requirements and guidelines},
+  address      = {Geneva, Switzerland},
+  year         = {2006},
+  url          = {https://www.iso.org/standard/38498.html},
+  note         = {First edition; amended by Amd~1:2017 and Amd~2:2020. Checked 2026-10-23}
+}
+
+@book{ipcc2021,
+  author    = {{IPCC}},
+  editor    = {Masson-Delmotte, V. and Zhai, P. and Pirani, A. and others},
+  title     = {Climate Change 2021: The Physical Science Basis. Contribution of Working Group {I} to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge, UK and New York, NY, USA},
+  year      = {2021},
+  doi       = {10.1017/9781009157896},
+  url       = {https://doi.org/10.1017/9781009157896},
+  note      = {Printed edition 2023. DOI checked 2026-10-23}
+}
+
+@misc{hpcg-repo,
+  author = {{HPCG Benchmark}},
+  title  = {{HPCG}: High Performance Conjugate Gradients benchmark, version 3.1},
+  year   = {2023},
+  url    = {https://github.com/hpcg-benchmark/hpcg},
+  note   = {Official source code; commit 114602d of 2023-09-23. Accessed 2026-10-23}
+}
+
+@misc{dell-c6420-pcf,
+  author = {{Dell Technologies}},
+  title  = {{PowerEdge C6420}: Estimated product carbon footprint},
+  year   = {2019},
+  month  = feb,
+  url    = {https://i.dell.com/sites/csdocuments/CorpComm_Docs/en/carbon-footprint-poweredge-c6420.pdf},
+  note   = {Two pages, PAIA method. Accessed 2026-09-29; link checked 2026-10-23}
+}
+
+@misc{slurm-sacct,
+  author = {{SchedMD}},
+  title  = {sacct: displays accounting data for all jobs and job steps},
+  url    = {https://slurm.schedmd.com/sacct.html},
+  note   = {Documentation of Slurm 26.05; IRIS runs 25.11.8. Accessed 2026-09-29}
+}
+
+@misc{slurm-rapl,
+  author = {{SchedMD}},
+  title  = {acct\_gather\_energy\_rapl.c, Slurm tag slurm-25-11-8-1},
+  url    = {https://github.com/SchedMD/slurm/blob/slurm-25-11-8-1/src/plugins/acct_gather_energy/rapl/acct_gather_energy_rapl.c},
+  note   = {Lines 405--406 add the package and DRAM energy of each socket. Accessed 2026-09-29}
+}
+
+@misc{slurm-jag,
+  author = {{SchedMD}},
+  title  = {common\_jag.c, Slurm tag slurm-25-11-8-1},
+  url    = {https://github.com/SchedMD/slurm/blob/slurm-25-11-8-1/src/plugins/jobacct_gather/common/common_jag.c},
+  note   = {Lines 451--476 fill fs/disk from rchar and wchar. Accessed 2026-09-29}
+}
+
+@manual{proc-io,
+  organization = {The Linux man-pages project},
+  title        = {proc\_pid\_io(5): {I/O} statistics of a process},
+  url          = {https://man7.org/linux/man-pages/man5/proc_pid_io.5.html},
+  note         = {Read in the locally installed {Linux} man-pages 6.17; the online page may be newer. Accessed 2026-09-29}
+}
+
+@misc{ulhpc-iris,
+  author = {{ULHPC, University of Luxembourg}},
+  title  = {Iris: overview, compute nodes, interconnect and timeline},
+  url    = {https://hpc-docs.uni.lu/systems/iris/},
+  note   = {With the sub-pages compute/, interconnect/ and timeline/. Accessed 2026-09-29 and 2026-10-23}
+}
+
+@misc{ulhpc-storage,
+  author = {{ULHPC, University of Luxembourg}},
+  title  = {{GPFS/SpectrumScale} and {Lustre} file systems},
+  url    = {https://hpc-docs.uni.lu/filesystems/},
+  note   = {Sub-pages gpfs/ and lustre/; pages dated 2026-09-25. Accessed 2026-09-29}
+}
+
+@misc{ulhpc-dc,
+  author = {{ULHPC, University of Luxembourg}},
+  title  = {{Centre de Calcul (CDC)} data center},
+  url    = {https://hpc-docs.uni.lu/data-center/},
+  note   = {Accessed 2026-10-23}
+}
+
+@misc{ulhpc-aion,
+  author = {{ULHPC, University of Luxembourg}},
+  title  = {Aion: overview, compute nodes, interconnect and timeline},
+  url    = {https://hpc-docs.uni.lu/systems/aion/},
+  note   = {With the sub-pages compute/, interconnect/ and timeline/; overview also in the course bibliography, snapshot of 2026-09-18. Accessed 2026-09-29 and 2026-10-23}
+}
+
+@techreport{ec2025,
+  author      = {Heatubun, Dennis and Dragan, Ionut and Bolchi, Marco and Lopes Bautista, Patricia and Hinterholzer, Simon and Hintemann, Ralph and Marx, Nicolas and Furda, Patrik},
+  title       = {Assessment of the Energy Performance and Sustainability of Data Centres in {EU}: First Technical Report},
+  institution = {European Commission, Directorate-General for Energy; Publications Office of the European Union},
+  address     = {Luxembourg},
+  year        = {2025},
+  month       = jul,
+  doi         = {10.2833/3168794},
+  url         = {https://doi.org/10.2833/3168794},
+  note        = {{ISBN} 978-92-68-29508-3. Prepared by EY, AIT and Borderstep. Accessed 2026-09-29; DOI checked 2026-10-23}
+}
+
+@article{lannelongue2021,
+  author  = {Lannelongue, Lo{\"i}c and Grealey, Jason and Inouye, Michael},
+  title   = {{Green Algorithms}: Quantifying the Carbon Footprint of Computation},
+  journal = {Advanced Science},
+  volume  = {8},
+  number  = {12},
+  pages   = {2100707},
+  year    = {2021},
+  doi     = {10.1002/advs.202100707},
+  url     = {https://doi.org/10.1002/advs.202100707}
+}
+
+@article{wadenstein2025,
+  author  = {Wadenstein, Mattias and Vanderbauwhede, Wim},
+  title   = {Life cycle analysis for emissions of scientific computing centres},
+  journal = {The European Physical Journal C},
+  volume  = {85},
+  number  = {8},
+  pages   = {913},
+  year    = {2025},
+  doi     = {10.1140/epjc/s10052-025-14650-8},
+  url     = {https://doi.org/10.1140/epjc/s10052-025-14650-8}
+}
+
+@misc{eurohpc,
+  author = {{EuroHPC Joint Undertaking}},
+  title  = {Our supercomputers: Vega},
+  url    = {https://eurohpc-ju.europa.eu/supercomputers/our-supercomputers_en},
+  note   = {Accessed 2026-09-29}
+}
+
+@misc{ilr2026,
+  author = {{Institut Luxembourgeois de R{\'e}gulation}},
+  title  = {R{\`e}glement {ILR/E26/14} du 12 mai 2026 portant publication de la composition et de l'impact environnemental du mix national pour l'ann{\'e}e 2025, secteur {\'e}lectricit{\'e}},
+  howpublished = {Journal officiel du Grand-Duch{\'e} de Luxembourg, M{\'e}morial A n\textsuperscript{o}~243, 20 May 2026},
+  year   = {2026},
+  url    = {https://legilux.public.lu/eli/etat/leg/rilr/2026/05/12/a243/jo},
+  note   = {Art.~2(a): 108.42\,g of carbon dioxide per kWh supplied to final customers in 2025. Accessed 2026-10-23}
+}
+
+@misc{ries2026s2,
+  author = {Ries, Beno{\^i}t},
+  title  = {Green {IT}: Session 2, Sustainable development},
+  howpublished = {Lecture slides, MICS2-63, University of Luxembourg},
+  month  = sep,
+  year   = {2026},
+  note   = {Slides 16, 20 and 25: 28\,kg CO\textsubscript{2}e per Luxembourg resident per day (Eurostat, 2024); 291\,gCO\textsubscript{2}e per km in a small petrol car (ecoinvent 3.11); grid intensities from Ember, 2025: Luxembourg 123, EU-27 209\,gCO\textsubscript{2}e per kWh}
+}
+
+@article{khan2018,
+  author  = {Khan, Kashif Nizam and Hirki, Mikael and Niemi, Tapio and Nurminen, Jukka K. and Ou, Zhonghong},
+  title   = {{RAPL} in Action: Experiences in Using {RAPL} for Power Measurements},
+  journal = {ACM Transactions on Modeling and Performance Evaluation of Computing Systems},
+  volume  = {3},
+  number  = {2},
+  pages   = {9:1--9:26},
+  year    = {2018},
+  doi     = {10.1145/3177754},
+  url     = {https://doi.org/10.1145/3177754}
+}
+
+@article{dongarra2016,
+  author  = {Dongarra, Jack and Heroux, Michael A. and Luszczek, Piotr},
+  title   = {A new metric for ranking high-performance computing systems},
+  journal = {National Science Review},
+  volume  = {3},
+  number  = {1},
+  pages   = {30--35},
+  year    = {2016},
+  doi     = {10.1093/nsr/nwv084},
+  url     = {https://doi.org/10.1093/nsr/nwv084}
+}
+
+@manual{gcc-optimize,
+  author = {{GNU Project}},
+  title  = {Options That Control Optimization, {GCC} 13.2 manual},
+  url    = {https://gcc.gnu.org/onlinedocs/gcc-13.2.0/gcc/Optimize-Options.html},
+  note   = {Accessed 2026-11-09}
+}
+
+@manual{gcc-x86,
+  author = {{GNU Project}},
+  title  = {x86 Options, {GCC} 13.2 manual},
+  url    = {https://gcc.gnu.org/onlinedocs/gcc-13.2.0/gcc/x86-Options.html},
+  note   = {Option -march=native. Accessed 2026-11-09}
+}
+
+@misc{slurm-srun,
+  author = {{SchedMD}},
+  title  = {srun: run parallel jobs},
+  url    = {https://slurm.schedmd.com/srun.html},
+  note   = {Option \texttt{-{}-cpu-freq}. Accessed 2026-11-09}
+}

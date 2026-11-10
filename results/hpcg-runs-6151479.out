@@ -1,0 +1,264 @@
+=== provenance ===
+job         : 6151479 (iris), builds [ref] x 100 rounds
+node        : iris-150
+cpu         : Intel(R) Xeon(R) Gold 6132 CPU @ 2.60GHz
+os          : Rocky Linux 8.10 (Green Obsidian)
+kernel      : 4.18.0-553.170.1.el8_10.x86_64
+slurm       : slurm 25.11.8
+started     : 2026-10-23T16:40:00+02:00
+rapl names  : package-0 package-1 dram dram 
+cpufreq     : intel_cpufreq performance 3700000 
+dmi         : Dell Inc. PowerEdge C6420 
+=== memory modules (EDAC; empty where the kernel exposes none) ===
+mc0/dimm0 CPU_SrcID#0_MC#0_Chan#0_DIMM#0 16384 MB
+mc0/dimm2 CPU_SrcID#0_MC#0_Chan#1_DIMM#0 16384 MB
+mc0/dimm4 CPU_SrcID#0_MC#0_Chan#2_DIMM#0 16384 MB
+mc1/dimm0 CPU_SrcID#0_MC#1_Chan#0_DIMM#0 16384 MB
+mc2/dimm0 CPU_SrcID#1_MC#0_Chan#0_DIMM#0 16384 MB
+mc2/dimm2 CPU_SrcID#1_MC#0_Chan#1_DIMM#0 16384 MB
+mc2/dimm4 CPU_SrcID#1_MC#0_Chan#2_DIMM#0 16384 MB
+mc3/dimm0 CPU_SrcID#1_MC#1_Chan#0_DIMM#0 16384 MB
+MemTotal:       131613828 kB
+=== modules ===
+
+Currently Loaded Modules:
+  1) env/release/2023b                       (S)
+  2) compiler/GCCcore/13.2.0
+  3) lib/zlib/1.2.13-GCCcore-13.2.0
+  4) tools/binutils/2.40-GCCcore-13.2.0
+  5) compiler/GCC/13.2.0
+  6) tools/numactl/2.0.16-GCCcore-13.2.0
+  7) tools/XZ/5.4.4-GCCcore-13.2.0
+  8) lib/libxml2/2.11.5-GCCcore-13.2.0
+  9) system/libpciaccess/0.17-GCCcore-13.2.0
+ 10) system/hwloc/2.9.2-GCCcore-13.2.0
+ 11) system/OpenSSL/1.1
+ 12) lib/libevent/2.1.12-GCCcore-13.2.0
+ 13) lib/UCX/1.15.0-GCCcore-13.2.0
+ 14) lib/libfabric/1.19.0-GCCcore-13.2.0
+ 15) lib/PMIx/4.2.6-GCCcore-13.2.0
+ 16) lib/UCC/1.2.0-GCCcore-13.2.0
+ 17) mpi/OpenMPI/4.1.6-GCC-13.2.0
+ 18) numlib/OpenBLAS/0.3.24-GCC-13.2.0
+ 19) lib/FlexiBLAS/3.3.1-GCC-13.2.0
+ 20) numlib/FFTW/3.3.10-GCC-13.2.0
+ 21) toolchain/gompi/2023b
+ 22) numlib/FFTW.MPI/3.3.10-gompi-2023b
+ 23) numlib/ScaLAPACK/2.2.0-gompi-2023b-fb
+ 24) toolchain/foss/2023b
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+
+ 
+
+g++ (GCC) 13.2.0
+commit      : 114602d458d1034faa52b71e4c15aba9b3a17698, 0 modified tracked files
+compile     : mpicxx -c  -I./src -I./src/MPI_GCC_OMP  -O3 -ffast-math -ftree-vectorize -ftree-vectorizer-verbose=0 -fopenmp -I/home/users/fdollaku/green_it/hpcg/src /home/users/fdollaku/green_it/hpcg/src/CG.cpp -o src/CG.o
+build ref   : ok, 188008 bytes, native=skylake-avx512
+input       : 84 bytes, sha256 8a18c3bde4485866bb24d3290da206003a4690112f2b01d6e77d9a3f7913376b
+sampler pid 3054448:  nice -n 19
+=== idle 60 s, before ===
+=== run 1/100 ref : start 2026-10-23T16:41:04+02:00 ===
+run 1 ref end : 2026-10-23T16:44:39+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.4019
+=== run 2/100 ref : start 2026-10-23T16:44:39+02:00 ===
+run 2 ref end : 2026-10-23T16:48:17+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2
+=== run 3/100 ref : start 2026-10-23T16:48:17+02:00 ===
+run 3 ref end : 2026-10-23T16:51:56+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2192
+=== run 4/100 ref : start 2026-10-23T16:51:56+02:00 ===
+run 4 ref end : 2026-10-23T16:55:35+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1162
+=== run 5/100 ref : start 2026-10-23T16:55:35+02:00 ===
+run 5 ref end : 2026-10-23T16:59:14+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1703
+=== run 6/100 ref : start 2026-10-23T16:59:14+02:00 ===
+run 6 ref end : 2026-10-23T17:02:52+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2303
+=== run 7/100 ref : start 2026-10-23T17:02:52+02:00 ===
+run 7 ref end : 2026-10-23T17:06:31+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1531
+=== run 8/100 ref : start 2026-10-23T17:06:31+02:00 ===
+run 8 ref end : 2026-10-23T17:10:10+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1394
+=== run 9/100 ref : start 2026-10-23T17:10:10+02:00 ===
+run 9 ref end : 2026-10-23T17:13:49+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2012
+=== run 10/100 ref : start 2026-10-23T17:13:49+02:00 ===
+run 10 ref end : 2026-10-23T17:17:27+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2289
+=== run 11/100 ref : start 2026-10-23T17:17:27+02:00 ===
+run 11 ref end : 2026-10-23T17:21:06+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1476
+=== run 12/100 ref : start 2026-10-23T17:21:06+02:00 ===
+run 12 ref end : 2026-10-23T17:24:43+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2672
+=== run 13/100 ref : start 2026-10-23T17:24:43+02:00 ===
+run 13 ref end : 2026-10-23T17:28:22+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1844
+=== run 14/100 ref : start 2026-10-23T17:28:22+02:00 ===
+run 14 ref end : 2026-10-23T17:31:59+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2597
+=== run 15/100 ref : start 2026-10-23T17:31:59+02:00 ===
+run 15 ref end : 2026-10-23T17:35:37+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2442
+=== run 16/100 ref : start 2026-10-23T17:35:37+02:00 ===
+run 16 ref end : 2026-10-23T17:39:16+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1651
+=== run 17/100 ref : start 2026-10-23T17:39:16+02:00 ===
+run 17 ref end : 2026-10-23T17:42:53+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2821
+=== run 18/100 ref : start 2026-10-23T17:42:53+02:00 ===
+run 18 ref end : 2026-10-23T17:46:30+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2457
+=== run 19/100 ref : start 2026-10-23T17:46:30+02:00 ===
+run 19 ref end : 2026-10-23T17:50:08+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2439
+=== run 20/100 ref : start 2026-10-23T17:50:08+02:00 ===
+run 20 ref end : 2026-10-23T17:53:45+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2749
+=== run 21/100 ref : start 2026-10-23T17:53:45+02:00 ===
+run 21 ref end : 2026-10-23T17:57:22+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2585
+=== run 22/100 ref : start 2026-10-23T17:57:22+02:00 ===
+run 22 ref end : 2026-10-23T18:00:59+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2829
+=== run 23/100 ref : start 2026-10-23T18:00:59+02:00 ===
+run 23 ref end : 2026-10-23T18:04:36+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.298
+=== run 24/100 ref : start 2026-10-23T18:04:36+02:00 ===
+run 24 ref end : 2026-10-23T18:08:15+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2112
+=== run 25/100 ref : start 2026-10-23T18:08:15+02:00 ===
+run 25 ref end : 2026-10-23T18:11:50+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.3724
+=== run 26/100 ref : start 2026-10-23T18:11:50+02:00 ===
+run 26 ref end : 2026-10-23T18:15:28+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2304
+=== run 27/100 ref : start 2026-10-23T18:15:28+02:00 ===
+run 27 ref end : 2026-10-23T18:19:05+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2699
+=== run 28/100 ref : start 2026-10-23T18:19:05+02:00 ===
+run 28 ref end : 2026-10-23T18:22:42+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.27
+=== run 29/100 ref : start 2026-10-23T18:22:42+02:00 ===
+run 29 ref end : 2026-10-23T18:26:19+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.3204
+=== run 30/100 ref : start 2026-10-23T18:26:19+02:00 ===
+run 30 ref end : 2026-10-23T18:29:56+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2459
+=== run 31/100 ref : start 2026-10-23T18:29:56+02:00 ===
+run 31 ref end : 2026-10-23T18:33:33+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.301
+=== run 32/100 ref : start 2026-10-23T18:33:33+02:00 ===
+run 32 ref end : 2026-10-23T18:37:11+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1817
+=== run 33/100 ref : start 2026-10-23T18:37:11+02:00 ===
+run 33 ref end : 2026-10-23T18:40:48+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.3092
+=== run 34/100 ref : start 2026-10-23T18:40:48+02:00 ===
+run 34 ref end : 2026-10-23T18:44:26+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1947
+=== run 35/100 ref : start 2026-10-23T18:44:26+02:00 ===
+run 35 ref end : 2026-10-23T18:48:03+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2639
+=== run 36/100 ref : start 2026-10-23T18:48:03+02:00 ===
+run 36 ref end : 2026-10-23T18:51:38+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.4094
+=== run 37/100 ref : start 2026-10-23T18:51:38+02:00 ===
+run 37 ref end : 2026-10-23T18:55:14+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.3573
+=== run 38/100 ref : start 2026-10-23T18:55:14+02:00 ===
+run 38 ref end : 2026-10-23T18:58:51+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2676
+=== run 39/100 ref : start 2026-10-23T18:58:51+02:00 ===
+run 39 ref end : 2026-10-23T19:02:29+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2526
+=== run 40/100 ref : start 2026-10-23T19:02:29+02:00 ===
+run 40 ref end : 2026-10-23T19:06:07+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1431
+=== run 41/100 ref : start 2026-10-23T19:06:07+02:00 ===
+run 41 ref end : 2026-10-23T19:09:44+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.275
+=== run 42/100 ref : start 2026-10-23T19:09:44+02:00 ===
+run 42 ref end : 2026-10-23T19:13:21+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2449
+=== run 43/100 ref : start 2026-10-23T19:13:22+02:00 ===
+run 43 ref end : 2026-10-23T19:16:59+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2935
+=== run 44/100 ref : start 2026-10-23T19:16:59+02:00 ===
+run 44 ref end : 2026-10-23T19:20:34+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.4273
+=== run 45/100 ref : start 2026-10-23T19:20:34+02:00 ===
+run 45 ref end : 2026-10-23T19:24:11+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2591
+=== run 46/100 ref : start 2026-10-23T19:24:11+02:00 ===
+run 46 ref end : 2026-10-23T19:27:46+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.4751
+=== run 47/100 ref : start 2026-10-23T19:27:46+02:00 ===
+run 47 ref end : 2026-10-23T19:31:22+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.4483
+=== run 48/100 ref : start 2026-10-23T19:31:22+02:00 ===
+run 48 ref end : 2026-10-23T19:35:00+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1511
+=== run 49/100 ref : start 2026-10-23T19:35:01+02:00 ===
+run 49 ref end : 2026-10-23T19:38:38+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.278
+=== run 50/100 ref : start 2026-10-23T19:38:38+02:00 ===
+run 50 ref end : 2026-10-23T19:42:15+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2603
+=== run 51/100 ref : start 2026-10-23T19:42:15+02:00 ===
+run 51 ref end : 2026-10-23T19:45:52+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2866
+=== run 52/100 ref : start 2026-10-23T19:45:52+02:00 ===
+run 52 ref end : 2026-10-23T19:49:27+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.453
+=== run 53/100 ref : start 2026-10-23T19:49:27+02:00 ===
+run 53 ref end : 2026-10-23T19:53:05+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1889
+=== run 54/100 ref : start 2026-10-23T19:53:05+02:00 ===
+run 54 ref end : 2026-10-23T19:56:43+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2247
+=== run 55/100 ref : start 2026-10-23T19:56:43+02:00 ===
+run 55 ref end : 2026-10-23T20:00:21+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2414
+=== run 56/100 ref : start 2026-10-23T20:00:21+02:00 ===
+run 56 ref end : 2026-10-23T20:03:58+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2817
+=== run 57/100 ref : start 2026-10-23T20:03:58+02:00 ===
+run 57 ref end : 2026-10-23T20:07:36+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2063
+=== run 58/100 ref : start 2026-10-23T20:07:36+02:00 ===
+run 58 ref end : 2026-10-23T20:11:14+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2609
+=== run 59/100 ref : start 2026-10-23T20:11:14+02:00 ===
+run 59 ref end : 2026-10-23T20:14:52+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2585
+=== run 60/100 ref : start 2026-10-23T20:14:52+02:00 ===
+run 60 ref end : 2026-10-23T20:18:29+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2909
+=== run 61/100 ref : start 2026-10-23T20:18:29+02:00 ===
+run 61 ref end : 2026-10-23T20:22:07+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1794
+=== run 62/100 ref : start 2026-10-23T20:22:07+02:00 ===
+run 62 ref end : 2026-10-23T20:25:45+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2575
+=== run 63/100 ref : start 2026-10-23T20:25:45+02:00 ===
+run 63 ref end : 2026-10-23T20:29:20+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.4444
+=== run 64/100 ref : start 2026-10-23T20:29:20+02:00 ===
+run 64 ref end : 2026-10-23T20:32:58+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2507
+=== run 65/100 ref : start 2026-10-23T20:32:58+02:00 ===
+run 65 ref end : 2026-10-23T20:36:35+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2487
+=== run 66/100 ref : start 2026-10-23T20:36:35+02:00 ===
+run 66 ref end : 2026-10-23T20:40:12+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.3051
+=== run 67/100 ref : start 2026-10-23T20:40:12+02:00 ===
+run 67 ref end : 2026-10-23T20:43:49+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2818
+=== run 68/100 ref : start 2026-10-23T20:43:49+02:00 ===
+run 68 ref end : 2026-10-23T20:47:26+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2375
+=== run 69/100 ref : start 2026-10-23T20:47:26+02:00 ===
+run 69 ref end : 2026-10-23T20:50:59+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.5928
+=== run 70/100 ref : start 2026-10-23T20:50:59+02:00 ===
+run 70 ref end : 2026-10-23T20:54:35+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.3621
+=== run 71/100 ref : start 2026-10-23T20:54:35+02:00 ===
+run 71 ref end : 2026-10-23T20:58:13+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2186
+=== run 72/100 ref : start 2026-10-23T20:58:13+02:00 ===
+run 72 ref end : 2026-10-23T21:01:51+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2651
+=== run 73/100 ref : start 2026-10-23T21:01:51+02:00 ===
+run 73 ref end : 2026-10-23T21:05:27+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2939
+=== run 74/100 ref : start 2026-10-23T21:05:27+02:00 ===
+run 74 ref end : 2026-10-23T21:09:07+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1471
+=== run 75/100 ref : start 2026-10-23T21:09:07+02:00 ===
+run 75 ref end : 2026-10-23T21:12:44+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2711
+=== run 76/100 ref : start 2026-10-23T21:12:44+02:00 ===
+run 76 ref end : 2026-10-23T21:16:20+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.3404
+=== run 77/100 ref : start 2026-10-23T21:16:20+02:00 ===
+run 77 ref end : 2026-10-23T21:19:57+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2656
+=== run 78/100 ref : start 2026-10-23T21:19:57+02:00 ===
+run 78 ref end : 2026-10-23T21:23:35+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2211
+=== run 79/100 ref : start 2026-10-23T21:23:35+02:00 ===
+run 79 ref end : 2026-10-23T21:27:14+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.21
+=== run 80/100 ref : start 2026-10-23T21:27:14+02:00 ===
+run 80 ref end : 2026-10-23T21:30:51+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2369
+=== run 81/100 ref : start 2026-10-23T21:30:51+02:00 ===
+run 81 ref end : 2026-10-23T21:34:30+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1383
+=== run 82/100 ref : start 2026-10-23T21:34:30+02:00 ===
+run 82 ref end : 2026-10-23T21:38:08+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2584
+=== run 83/100 ref : start 2026-10-23T21:38:08+02:00 ===
+run 83 ref end : 2026-10-23T21:41:45+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.267
+=== run 84/100 ref : start 2026-10-23T21:41:45+02:00 ===
+run 84 ref end : 2026-10-23T21:45:22+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2592
+=== run 85/100 ref : start 2026-10-23T21:45:22+02:00 ===
+run 85 ref end : 2026-10-23T21:48:59+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2658
+=== run 86/100 ref : start 2026-10-23T21:48:59+02:00 ===
+run 86 ref end : 2026-10-23T21:52:37+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2552
+=== run 87/100 ref : start 2026-10-23T21:52:37+02:00 ===
+run 87 ref end : 2026-10-23T21:56:14+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.3089
+=== run 88/100 ref : start 2026-10-23T21:56:15+02:00 ===
+run 88 ref end : 2026-10-23T21:59:50+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.3579
+=== run 89/100 ref : start 2026-10-23T21:59:51+02:00 ===
+run 89 ref end : 2026-10-23T22:03:29+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1992
+=== run 90/100 ref : start 2026-10-23T22:03:29+02:00 ===
+run 90 ref end : 2026-10-23T22:07:04+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.3668
+=== run 91/100 ref : start 2026-10-23T22:07:04+02:00 ===
+run 91 ref end : 2026-10-23T22:10:42+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2187
+=== run 92/100 ref : start 2026-10-23T22:10:43+02:00 ===
+run 92 ref end : 2026-10-23T22:14:22+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1709
+=== run 93/100 ref : start 2026-10-23T22:14:22+02:00 ===
+run 93 ref end : 2026-10-23T22:18:01+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1387
+=== run 94/100 ref : start 2026-10-23T22:18:01+02:00 ===
+run 94 ref end : 2026-10-23T22:21:39+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.1871
+=== run 95/100 ref : start 2026-10-23T22:21:39+02:00 ===
+run 95 ref end : 2026-10-23T22:25:17+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2611
+=== run 96/100 ref : start 2026-10-23T22:25:17+02:00 ===
+run 96 ref end : 2026-10-23T22:28:54+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2782
+=== run 97/100 ref : start 2026-10-23T22:28:54+02:00 ===
+run 97 ref end : 2026-10-23T22:32:32+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2351
+=== run 98/100 ref : start 2026-10-23T22:32:32+02:00 ===
+run 98 ref end : 2026-10-23T22:36:08+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2894
+=== run 99/100 ref : start 2026-10-23T22:36:08+02:00 ===
+run 99 ref end : 2026-10-23T22:39:46+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2364
+=== run 100/100 ref : start 2026-10-23T22:39:46+02:00 ===
+run 100 ref end : 2026-10-23T22:43:24+02:00 ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=12.2417
+=== idle 60 s, after ===
+=== finished: 2026-10-23T22:44:24+02:00 ===
+runs in /home/users/fdollaku/green_it/results/hundred-iris-6151479

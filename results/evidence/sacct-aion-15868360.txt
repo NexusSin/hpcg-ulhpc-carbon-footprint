@@ -1,0 +1,7 @@
+JobID|ElapsedRaw|ConsumedEnergyRaw|CPUTimeRAW|TotalCPU|TRESUsageInTot|TRESUsageOutTot|AveCPUFreq|State|NodeList|AllocTRES
+15868360|509||65152|02:56:14||||COMPLETED|aion-0216|billing=197,cpu=128,mem=224000M,node=1
+15868360.batch|509||65152|00:50.218|cpu=00:00:50,fs/disk=154045902,mem=840600K,pages=33,vmem=30944K|energy=0,fs/disk=2051781|33.80M|COMPLETED|aion-0216|cpu=128,mem=224000M,node=1
+15868360.extern|509||65152|00:00:00||energy=0|0|COMPLETED|aion-0216|billing=197,cpu=128,mem=224000M,node=1
+15868360.0|128||3584|58:29.154|cpu=00:58:28,fs/disk=216232099,mem=28329096K,pages=8,vmem=28225756K|energy=0,fs/disk=120711543|758.60M|COMPLETED|aion-0216|cpu=28,mem=49000M,node=1
+15868360.1|127||3556|58:25.578|cpu=00:58:25,fs/disk=215813003,mem=28344448K,pages=2,vmem=28241256K|energy=0,fs/disk=120710976|753.30M|COMPLETED|aion-0216|cpu=28,mem=49000M,node=1
+15868360.2|128||3584|58:29.887|cpu=00:58:29,fs/disk=216645770,mem=28334096K,pages=2,vmem=28231372K|energy=0,fs/disk=120711818|568.34M|COMPLETED|aion-0216|cpu=28,mem=49000M,node=1

@@ -1,0 +1,28 @@
+# sreport cluster utilization start=2025-09-29 end=2026-09-29 (-t percent and -t hours), both clusters
+# read 2026-09-29T21:13 from access1 of each cluster
+
+--------------------------------------------------------------------------------
+Cluster Utilization 2025-09-29T00:00:00 - 2026-09-28T23:59:59
+Usage reported in Percentage of Total
+--------------------------------------------------------------------------------
+Cluster|Allocated|Down|PLND Down|Idle|Planned|Reported
+iris|32.94%|19.09%|2.41%|29.06%|16.50%|100.00%
+--------------------------------------------------------------------------------
+Cluster Utilization 2025-09-29T00:00:00 - 2026-09-28T23:59:59
+Usage reported in CPU Hours
+--------------------------------------------------------------------------------
+Cluster|Allocated|Down|PLND Down|Idle|Planned|Reported
+iris|17238218|9991220|1259127|15208177|8635782|52332524
+
+--------------------------------------------------------------------------------
+Cluster Utilization 2025-09-29T00:00:00 - 2026-09-28T23:59:59
+Usage reported in Percentage of Total
+--------------------------------------------------------------------------------
+Cluster|Allocated|Down|PLND Down|Idle|Planned|Reported
+aion|54.37%|2.67%|1.47%|35.86%|5.64%|99.99%
+--------------------------------------------------------------------------------
+Cluster Utilization 2025-09-29T00:00:00 - 2026-09-28T23:59:59
+Usage reported in CPU Hours
+--------------------------------------------------------------------------------
+Cluster|Allocated|Down|PLND Down|Idle|Planned|Reported
+aion|215794469|10579030|5826972|142311504|22375833|396887808

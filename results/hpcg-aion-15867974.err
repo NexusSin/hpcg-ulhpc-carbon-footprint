@@ -1,0 +1,36 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) env/release/default
+
+The following have been reloaded with a version change:
+  1) env/release/default => env/release/2023b
+
+cpu-bind=MASK - aion-0296, task  0  0 [206940]: mask 0x1 set
+cpu-bind=MASK - aion-0296, task  1  1 [206941]: mask 0x2 set
+cpu-bind=MASK - aion-0296, task  2  2 [206942]: mask 0x4 set
+cpu-bind=MASK - aion-0296, task  3  3 [206943]: mask 0x8 set
+cpu-bind=MASK - aion-0296, task  4  4 [206944]: mask 0x10000 set
+cpu-bind=MASK - aion-0296, task  5  5 [206945]: mask 0x20000 set
+cpu-bind=MASK - aion-0296, task  6  6 [206946]: mask 0x40000 set
+cpu-bind=MASK - aion-0296, task  7  7 [206947]: mask 0x80000 set
+cpu-bind=MASK - aion-0296, task  8  8 [206948]: mask 0x100000000 set
+cpu-bind=MASK - aion-0296, task  9  9 [206949]: mask 0x200000000 set
+cpu-bind=MASK - aion-0296, task 10 10 [206950]: mask 0x400000000 set
+cpu-bind=MASK - aion-0296, task 11 11 [206951]: mask 0x800000000 set
+cpu-bind=MASK - aion-0296, task 12 12 [206952]: mask 0x1000000000000 set
+cpu-bind=MASK - aion-0296, task 13 13 [206953]: mask 0x2000000000000 set
+cpu-bind=MASK - aion-0296, task 14 14 [206954]: mask 0x4000000000000 set
+cpu-bind=MASK - aion-0296, task 15 15 [206955]: mask 0x8000000000000 set
+cpu-bind=MASK - aion-0296, task 16 16 [206956]: mask 0x10000000000000000 set
+cpu-bind=MASK - aion-0296, task 17 17 [206957]: mask 0x20000000000000000 set
+cpu-bind=MASK - aion-0296, task 18 18 [206958]: mask 0x40000000000000000 set
+cpu-bind=MASK - aion-0296, task 19 19 [206959]: mask 0x100000000000000000000 set
+cpu-bind=MASK - aion-0296, task 20 20 [206960]: mask 0x200000000000000000000 set
+cpu-bind=MASK - aion-0296, task 21 21 [206961]: mask 0x400000000000000000000 set
+cpu-bind=MASK - aion-0296, task 22 22 [206962]: mask 0x1000000000000000000000000 set
+cpu-bind=MASK - aion-0296, task 23 23 [206963]: mask 0x2000000000000000000000000 set
+cpu-bind=MASK - aion-0296, task 24 24 [206964]: mask 0x4000000000000000000000000 set
+cpu-bind=MASK - aion-0296, task 25 25 [206965]: mask 0x10000000000000000000000000000 set
+cpu-bind=MASK - aion-0296, task 26 26 [206966]: mask 0x20000000000000000000000000000 set
+cpu-bind=MASK - aion-0296, task 27 27 [206967]: mask 0x40000000000000000000000000000 set

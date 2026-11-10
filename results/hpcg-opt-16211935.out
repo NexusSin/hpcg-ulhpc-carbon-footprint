@@ -1,0 +1,120 @@
+=== provenance ===
+job         : 16211935 (aion), configs [ref=ref@ o2=o2@ native=native@ f20=ref@2000000 f15=ref@1500000] x 10 rounds
+node        : aion-0305
+cpu         : AMD EPYC 7H12 64-Core Processor
+kernel      : 4.18.0-553.183.1.el8_10.x86_64
+slurm       : slurm 25.11.8
+started     : 2026-11-09T10:34:44+01:00
+cpufreq     : driver acpi-cpufreq governor performance min 1500000 max 2600000 avail [2600000 2000000 1500000 ] governors [conservative ondemand userspace powersave performance schedutil ]
+g++ (GCC) 13.2.0
+commit      : 114602d458d1034faa52b71e4c15aba9b3a17698, 0 modified tracked files
+compile     : mpicxx -c  -I./src -I./src/MPI_GCC_OMP  -O3 -ffast-math -ftree-vectorize -ftree-vectorizer-verbose=0 -fopenmp -march=native -I/home/users/fdollaku/green_it/hpcg/src /home/users/fdollaku/green_it/hpcg/src/CG.cpp -o src/CG.o
+build native   : ok, 192104 bytes, native=znver2
+compile     : mpicxx -c  -I./src -I./src/MPI_GCC_OMP  -O2 -ffast-math -ftree-vectorize -ftree-vectorizer-verbose=0 -fopenmp -I/home/users/fdollaku/green_it/hpcg/src /home/users/fdollaku/green_it/hpcg/src/CG.cpp -o src/CG.o
+build o2   : ok, 178056 bytes, native=znver2
+compile     : mpicxx -c  -I./src -I./src/MPI_GCC_OMP  -O3 -ffast-math -ftree-vectorize -ftree-vectorizer-verbose=0 -fopenmp -I/home/users/fdollaku/green_it/hpcg/src /home/users/fdollaku/green_it/hpcg/src/CG.cpp -o src/CG.o
+build ref   : ok, 188008 bytes, native=znver2
+input       : 84 bytes, sha256 8a18c3bde4485866bb24d3290da206003a4690112f2b01d6e77d9a3f7913376b
+=== idle 60 s, before ===
+=== run 1/50 ref (build ref, cap none) : start 2026-11-09T10:35:52+01:00 ===
+run 1 ref end : 2026-11-09T10:37:57+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.7986 ; result is VALID
+=== run 2/50 o2 (build o2, cap none) : start 2026-11-09T10:37:57+01:00 ===
+run 2 o2 end : 2026-11-09T10:40:02+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8933 ; result is VALID
+=== run 3/50 native (build native, cap none) : start 2026-11-09T10:40:02+01:00 ===
+run 3 native end : 2026-11-09T10:42:07+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8486 ; result is VALID
+=== run 4/50 f20 (build ref, cap 2000000) : start 2026-11-09T10:42:07+01:00 ===
+run 4 f20 end : 2026-11-09T10:44:17+01:00 ; max-freq  28 2000000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.0263 ; result is VALID
+=== run 5/50 f15 (build ref, cap 1500000) : start 2026-11-09T10:44:17+01:00 ===
+run 5 f15 end : 2026-11-09T10:46:34+01:00 ; max-freq  28 1500000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=28.4544 ; result is VALID
+=== run 6/50 o2 (build o2, cap none) : start 2026-11-09T10:46:34+01:00 ===
+run 6 o2 end : 2026-11-09T10:48:39+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8415 ; result is VALID
+=== run 7/50 native (build native, cap none) : start 2026-11-09T10:48:39+01:00 ===
+run 7 native end : 2026-11-09T10:50:44+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8675 ; result is VALID
+=== run 8/50 f20 (build ref, cap 2000000) : start 2026-11-09T10:50:44+01:00 ===
+run 8 f20 end : 2026-11-09T10:52:53+01:00 ; max-freq  28 2000000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.0693 ; result is VALID
+=== run 9/50 f15 (build ref, cap 1500000) : start 2026-11-09T10:52:53+01:00 ===
+run 9 f15 end : 2026-11-09T10:54:51+01:00 ; max-freq  28 1500000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=28.416 ; result is VALID
+=== run 10/50 ref (build ref, cap none) : start 2026-11-09T10:54:51+01:00 ===
+run 10 ref end : 2026-11-09T10:56:56+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8491 ; result is VALID
+=== run 11/50 native (build native, cap none) : start 2026-11-09T10:56:56+01:00 ===
+run 11 native end : 2026-11-09T10:59:01+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8186 ; result is VALID
+=== run 12/50 f20 (build ref, cap 2000000) : start 2026-11-09T10:59:01+01:00 ===
+run 12 f20 end : 2026-11-09T11:01:11+01:00 ; max-freq  28 2000000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.0616 ; result is VALID
+=== run 13/50 f15 (build ref, cap 1500000) : start 2026-11-09T11:01:11+01:00 ===
+run 13 f15 end : 2026-11-09T11:03:28+01:00 ; max-freq  28 1500000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=28.4572 ; result is VALID
+=== run 14/50 ref (build ref, cap none) : start 2026-11-09T11:03:28+01:00 ===
+run 14 ref end : 2026-11-09T11:05:33+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8331 ; result is VALID
+=== run 15/50 o2 (build o2, cap none) : start 2026-11-09T11:05:33+01:00 ===
+run 15 o2 end : 2026-11-09T11:07:38+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8624 ; result is VALID
+=== run 16/50 f20 (build ref, cap 2000000) : start 2026-11-09T11:07:38+01:00 ===
+run 16 f20 end : 2026-11-09T11:09:47+01:00 ; max-freq  28 2000000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.0777 ; result is VALID
+=== run 17/50 f15 (build ref, cap 1500000) : start 2026-11-09T11:09:47+01:00 ===
+run 17 f15 end : 2026-11-09T11:11:45+01:00 ; max-freq  28 1500000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=28.4522 ; result is VALID
+=== run 18/50 ref (build ref, cap none) : start 2026-11-09T11:11:45+01:00 ===
+run 18 ref end : 2026-11-09T11:13:50+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8484 ; result is VALID
+=== run 19/50 o2 (build o2, cap none) : start 2026-11-09T11:13:50+01:00 ===
+run 19 o2 end : 2026-11-09T11:15:55+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8285 ; result is VALID
+=== run 20/50 native (build native, cap none) : start 2026-11-09T11:15:55+01:00 ===
+run 20 native end : 2026-11-09T11:18:00+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.9058 ; result is VALID
+=== run 21/50 f15 (build ref, cap 1500000) : start 2026-11-09T11:18:00+01:00 ===
+run 21 f15 end : 2026-11-09T11:19:58+01:00 ; max-freq  28 1500000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=28.2913 ; result is VALID
+=== run 22/50 ref (build ref, cap none) : start 2026-11-09T11:19:58+01:00 ===
+run 22 ref end : 2026-11-09T11:22:03+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8275 ; result is VALID
+=== run 23/50 o2 (build o2, cap none) : start 2026-11-09T11:22:03+01:00 ===
+run 23 o2 end : 2026-11-09T11:24:08+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8213 ; result is VALID
+=== run 24/50 native (build native, cap none) : start 2026-11-09T11:24:08+01:00 ===
+run 24 native end : 2026-11-09T11:26:13+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8647 ; result is VALID
+=== run 25/50 f20 (build ref, cap 2000000) : start 2026-11-09T11:26:13+01:00 ===
+run 25 f20 end : 2026-11-09T11:28:22+01:00 ; max-freq  28 2000000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.0682 ; result is VALID
+=== run 26/50 ref (build ref, cap none) : start 2026-11-09T11:28:22+01:00 ===
+run 26 ref end : 2026-11-09T11:30:27+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8025 ; result is VALID
+=== run 27/50 o2 (build o2, cap none) : start 2026-11-09T11:30:28+01:00 ===
+run 27 o2 end : 2026-11-09T11:32:33+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8576 ; result is VALID
+=== run 28/50 native (build native, cap none) : start 2026-11-09T11:32:33+01:00 ===
+run 28 native end : 2026-11-09T11:34:38+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8514 ; result is VALID
+=== run 29/50 f20 (build ref, cap 2000000) : start 2026-11-09T11:34:38+01:00 ===
+run 29 f20 end : 2026-11-09T11:36:47+01:00 ; max-freq  28 2000000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.0741 ; result is VALID
+=== run 30/50 f15 (build ref, cap 1500000) : start 2026-11-09T11:36:47+01:00 ===
+run 30 f15 end : 2026-11-09T11:38:44+01:00 ; max-freq  28 1500000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=28.429 ; result is VALID
+=== run 31/50 o2 (build o2, cap none) : start 2026-11-09T11:38:44+01:00 ===
+run 31 o2 end : 2026-11-09T11:40:49+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8559 ; result is VALID
+=== run 32/50 native (build native, cap none) : start 2026-11-09T11:40:49+01:00 ===
+run 32 native end : 2026-11-09T11:42:54+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.857 ; result is VALID
+=== run 33/50 f20 (build ref, cap 2000000) : start 2026-11-09T11:42:54+01:00 ===
+run 33 f20 end : 2026-11-09T11:45:04+01:00 ; max-freq  28 2000000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.0514 ; result is VALID
+=== run 34/50 f15 (build ref, cap 1500000) : start 2026-11-09T11:45:04+01:00 ===
+run 34 f15 end : 2026-11-09T11:47:01+01:00 ; max-freq  28 1500000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=28.4506 ; result is VALID
+=== run 35/50 ref (build ref, cap none) : start 2026-11-09T11:47:01+01:00 ===
+run 35 ref end : 2026-11-09T11:49:07+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8311 ; result is VALID
+=== run 36/50 native (build native, cap none) : start 2026-11-09T11:49:07+01:00 ===
+run 36 native end : 2026-11-09T11:51:11+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8979 ; result is VALID
+=== run 37/50 f20 (build ref, cap 2000000) : start 2026-11-09T11:51:11+01:00 ===
+run 37 f20 end : 2026-11-09T11:53:21+01:00 ; max-freq  28 2000000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.1115 ; result is VALID
+=== run 38/50 f15 (build ref, cap 1500000) : start 2026-11-09T11:53:21+01:00 ===
+run 38 f15 end : 2026-11-09T11:55:38+01:00 ; max-freq  28 1500000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=28.481 ; result is VALID
+=== run 39/50 ref (build ref, cap none) : start 2026-11-09T11:55:38+01:00 ===
+run 39 ref end : 2026-11-09T11:57:43+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.824 ; result is VALID
+=== run 40/50 o2 (build o2, cap none) : start 2026-11-09T11:57:43+01:00 ===
+run 40 o2 end : 2026-11-09T11:59:48+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8475 ; result is VALID
+=== run 41/50 f20 (build ref, cap 2000000) : start 2026-11-09T11:59:48+01:00 ===
+run 41 f20 end : 2026-11-09T12:01:57+01:00 ; max-freq  28 2000000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.076 ; result is VALID
+=== run 42/50 f15 (build ref, cap 1500000) : start 2026-11-09T12:01:57+01:00 ===
+run 42 f15 end : 2026-11-09T12:04:15+01:00 ; max-freq  28 1500000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=28.507 ; result is VALID
+=== run 43/50 ref (build ref, cap none) : start 2026-11-09T12:04:15+01:00 ===
+run 43 ref end : 2026-11-09T12:06:20+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8247 ; result is VALID
+=== run 44/50 o2 (build o2, cap none) : start 2026-11-09T12:06:20+01:00 ===
+run 44 o2 end : 2026-11-09T12:08:25+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8144 ; result is VALID
+=== run 45/50 native (build native, cap none) : start 2026-11-09T12:08:25+01:00 ===
+run 45 native end : 2026-11-09T12:10:30+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8388 ; result is VALID
+=== run 46/50 f15 (build ref, cap 1500000) : start 2026-11-09T12:10:30+01:00 ===
+run 46 f15 end : 2026-11-09T12:12:47+01:00 ; max-freq  28 1500000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=28.468 ; result is VALID
+=== run 47/50 ref (build ref, cap none) : start 2026-11-09T12:12:47+01:00 ===
+run 47 ref end : 2026-11-09T12:14:52+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8407 ; result is VALID
+=== run 48/50 o2 (build o2, cap none) : start 2026-11-09T12:14:52+01:00 ===
+run 48 o2 end : 2026-11-09T12:16:58+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8097 ; result is VALID
+=== run 49/50 native (build native, cap none) : start 2026-11-09T12:16:58+01:00 ===
+run 49 native end : 2026-11-09T12:19:03+01:00 ; max-freq  128 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.8183 ; result is VALID
+=== run 50/50 f20 (build ref, cap 2000000) : start 2026-11-09T12:19:03+01:00 ===
+run 50 f20 end : 2026-11-09T12:21:12+01:00 ; max-freq  28 2000000 100 2600000  ; Final Summary::HPCG result is VALID with a GFLOP/s rating of=30.0733 ; result is VALID
+=== idle 60 s, after ===
+=== finished: 2026-11-09T12:22:14+01:00 ===
