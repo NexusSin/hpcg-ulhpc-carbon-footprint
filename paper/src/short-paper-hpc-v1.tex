@@ -680,24 +680,17 @@ change only, for one job on two clusters at one site, and support no comparison
 with other jobs.
 
 % ---------------------------------------------------------------------
-% Unnumbered on purpose: a disclosure statement sits outside the argument.
-\section*{AI Usage Transparency}
-
-I used AI to analyse the architecture of the IRIS and Aion clusters, adapt the
-SLURM submission script, and interpret the logs from the HPCG runs. It also
-helped me extract information from the cited websites and apply findings from
-the literature to this job.
-
-% ---------------------------------------------------------------------
+\clearpage
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
 
 % ---------------------------------------------------------------------
 
+\onecolumn
 \appendices
 \section{Figures and Tables}\label{app:figures}
 
-\begin{table*}[!t]
+\begin{table}[!ht]
 \caption{The job and the two machines it ran on}
 \label{tab:frozen}
 \centering
@@ -738,9 +731,9 @@ Energy read & RAPL counters: packages and memory & RAPL counters: packages only 
 documentation~\cite{ulhpc-iris,ulhpc-aion,ulhpc-dc}; versions and checksum from
 the job logs. Peak memory bandwidth = channels $\times$ transfer rate $\times$
 8 bytes.}
-\end{table*}
+\end{table}
 
-\begin{table}[!t]
+\begin{table}[!ht]
 \caption{Declared factors}
 \label{tab:factors}
 \centering
@@ -766,7 +759,7 @@ Comparators: 5\,W LED at the grid factor, 291\,g per km in a small petrol car,
 28\,kg per Luxembourg resident per day~\cite{ries2026s2}.}
 \end{table}
 
-\begin{table*}[!t]
+\begin{table}[!ht]
 \caption{Mean per run over the 100 runs on each cluster}
 \label{tab:runs}
 \centering
@@ -790,9 +783,9 @@ node of each cluster. The footprint of a single run has a standard deviation of
 \AionGramsRunMax\,g. Energy: RAPL counters read between runs. Timed work: the
 floating-point operations of HPCG's timed phase, 100 CG iterations per run on
 IRIS and 200 on Aion. Grams with the factors of Table~\ref{tab:factors}.}
-\end{table*}
+\end{table}
 
-\begin{table}[!t]
+\begin{table}[!ht]
 \caption{Mean footprint of a run, over 100 runs per cluster}
 \label{tab:footprint}
 \centering
@@ -827,7 +820,7 @@ Node alone, no site overhead & \IrisGramsNoSite & \AionGramsNoSite \\
 Shares of the total in brackets. Operational = node electricity + site overhead.}
 \end{table}
 
-\begin{table}[!t]
+\begin{table}[!ht]
 \caption{Other measured quantities: mean per run over the 100 runs}
 \label{tab:inventory}
 \centering
@@ -852,7 +845,7 @@ Aion; idle power over 60\,s before and after the runs. Water: litres per kWh of 
 energy for each room's size class, 0.193 and 0.413~\cite{ec2025}.}
 \end{table}
 
-\begin{table}[!t]
+\begin{table}[!ht]
 \caption{Utilisation of the two clusters over twelve months}
 \label{tab:util}
 \centering
@@ -874,7 +867,7 @@ Planned down & 2.41\,\% & 1.47\,\% \\
 so its share probably understates the Skylake nodes' own.}
 \end{table}
 
-\begin{table*}[!t]
+\begin{table}[!ht]
 \caption{Before and after optimisation: the unchanged job and the change kept, mean per run}
 \label{tab:beforeafter}
 \centering
@@ -897,9 +890,9 @@ the job alone, protocol and factors as Table~\ref{tab:runs}. Change: against the
 same node on IRIS, whose nodes differ widely (Section~\ref{sec:optproc}).\OptLeftOutNote\ Spread:
 one process per L3 cache. HPCG validated every run. gCO\textsubscript{2}e to
 three digits so that the change shows; accurate to two (Section~\ref{sec:lcia}).}
-\end{table*}
+\end{table}
 
-\begin{table*}[!t]
+\begin{table}[!ht]
 \caption{The rounds that chose the change: every configuration against the unchanged job on the same node}
 \label{tab:opt}
 \centering
@@ -931,9 +924,9 @@ the node of the 100 capped runs.\OptLeftOutNote\ HPCG validated every run; ``it.
 configuration whose runs did different numbers of iterations is split by that
 number (Section~\ref{sec:afteropt}). gCO\textsubscript{2}e to three digits,
 accurate to two.}
-\end{table*}
+\end{table}
 
-\clearpage
+\twocolumn
 \section{AI Usage Journal}\label{app:journal}
 
 I used AI to help me read the technical documentation for IRIS and Aion and
